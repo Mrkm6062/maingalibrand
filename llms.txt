@@ -1,0 +1,18 @@
+# Galibrand
+
+> Galibrand helps Kirana stores, vegetable shops, and wholesalers in India take online orders and deliver locally without paying high commissions.
+
+## Site Map
+
+- [Home](https://www.galibrand.cloud/)
+- [Products](https://www.galibrand.cloud/products)
+- [Pricing](https://www.galibrand.cloud/pricing)
+- [Blog](https://www.galibrand.cloud/blog)
+- [Contact](https://www.galibrand.cloud/contact)
+
+## Guides
+
+- [How Kirana Stores Can Take Online Orders](https://www.galibrand.cloud/kirana-store-online-ordering)
+- [Online Ordering System for Mumbai](https://www.galibrand.cloud/online-ordering-kirana-shop-mumbai)
+- [Online Ordering System for Delhi](https://www.galibrand.cloud/online-ordering-kirana-shop-delhi)
+- [Online Ordering System for Small Business](https://www.galibrand.cloud/online-ordering-system-for-small-business)

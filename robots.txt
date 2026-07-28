@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /header.html
+Disallow: /footer.html
+Sitemap: https://www.galibrand.cloud/sitemap.xml
