@@ -57,7 +57,6 @@ function setActiveNavLink() {
 
 function initBackToTop() {
     const backToTopBtn = document.getElementById('backToTop');
-    const footer = document.getElementById('footer-placeholder');
 
     if (backToTopBtn) {
         window.addEventListener('scroll', () => {
@@ -81,15 +80,20 @@ async function loadPartials() {
 
     try {
         if (headerPlaceholder) {
-            const response = await fetch('/header.html');
-            headerPlaceholder.innerHTML = await response.text();
-            initMobileMenu();
-            setActiveNavLink();
+            // Cache-busting query parameter to guarantee fresh partials on VPS
+            const response = await fetch('/header.html?v=2.2', { cache: 'no-cache' });
+            if (response.ok) {
+                headerPlaceholder.innerHTML = await response.text();
+                initMobileMenu();
+                setActiveNavLink();
+            }
         }
         if (footerPlaceholder) {
-            const response = await fetch('/footer.html');
-            footerPlaceholder.innerHTML = await response.text();
-            initBackToTop();
+            const response = await fetch('/footer.html?v=2.2', { cache: 'no-cache' });
+            if (response.ok) {
+                footerPlaceholder.innerHTML = await response.text();
+                initBackToTop();
+            }
         }
     } catch (error) {
         console.error('Error loading partials:', error);
@@ -364,8 +368,9 @@ function renderPricingCards() {
 
     currentPricingPlans.forEach((plan, cardIndex) => {
         const card = document.createElement('div');
-        card.className = 'card pricing-card reveal';
-        card.style.transitionDelay = `${(cardIndex % 4) * 0.1}s`;
+        // Marked with both reveal and revealed so dynamic cards are always visible immediately
+        card.className = 'card pricing-card reveal revealed';
+        card.style.transitionDelay = `${(cardIndex % 4) * 0.08}s`;
 
         const isPopular = Boolean(plan.popular || plan.is_popular || plan.name === 'Pro');
         if (isPopular) {
@@ -444,36 +449,30 @@ function renderPricingCards() {
         `;
         pricingGrid.appendChild(card);
     });
-
-    if (typeof window.refreshScrollAnimations === 'function') {
-        window.refreshScrollAnimations();
-    }
 }
 
 // ========================================================
-// SCROLL REVEAL ANIMATIONS
-// Smoothly brings up content as user scrolls down
+// SCROLL REVEAL ANIMATIONS (Fail-safe architecture)
 // ========================================================
 function initScrollAnimations() {
+    if (!('IntersectionObserver' in window)) {
+        // Observer not supported: elements remain visible by default
+        return;
+    }
+
     const revealSelector = '.reveal, [data-reveal], section .card, section .grid-3 > *, section .grid-2 > *, .section-title, .section-subtitle, .docs-section, .docs-step, .faq-item, .hero-buttons, .highlight-box, .cta-box';
-    
     const elementsToReveal = document.querySelectorAll(revealSelector);
+
     elementsToReveal.forEach(el => {
         if (!el.classList.contains('reveal')) {
             el.classList.add('reveal');
         }
     });
 
-    // Check if IntersectionObserver is supported
-    if (!('IntersectionObserver' in window)) {
-        elementsToReveal.forEach(el => el.classList.add('revealed'));
-        return;
-    }
-
     const observerOptions = {
         root: null,
-        rootMargin: '0px 0px -40px 0px',
-        threshold: 0.08
+        rootMargin: '0px 0px -30px 0px',
+        threshold: 0.05
     };
 
     const scrollObserver = new IntersectionObserver((entries, observer) => {
@@ -495,28 +494,16 @@ function initScrollAnimations() {
         }
     });
 
-    // Handle staggered animation for grid items
+    // Stagger delays for grid children
     document.querySelectorAll('.grid-3, .grid-2, .pricing-grid-4').forEach(grid => {
         const items = grid.querySelectorAll('.reveal');
         items.forEach((item, index) => {
-            item.style.transitionDelay = `${(index % 3) * 0.12}s`;
+            item.style.transitionDelay = `${(index % 3) * 0.1}s`;
         });
     });
 
-    // Expose refresh function for dynamic elements
-    window.refreshScrollAnimations = function() {
-        const newElements = document.querySelectorAll('#pricing-grid .pricing-card, .reveal:not(.revealed)');
-        newElements.forEach((el, index) => {
-            el.classList.add('reveal');
-            el.style.transitionDelay = `${(index % 4) * 0.1}s`;
-            const rect = el.getBoundingClientRect();
-            if (rect.top < window.innerHeight && rect.bottom > 0) {
-                el.classList.add('revealed');
-            } else {
-                scrollObserver.observe(el);
-            }
-        });
-    };
+    // Mark system as ready for animation
+    document.documentElement.classList.add('sr-ready');
 }
 
 // ========================================================

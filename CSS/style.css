@@ -1,7 +1,7 @@
 /* 
-  Galibrand - Main Modern Stylesheet 
+  Galibrand - Main Modern Stylesheet (v2.2)
   Theme: Green (Fresh #7CB342) & Orange (Energy #FB8C00)
-  Preserving all brand colors, IDs, and functionality.
+  Preserving all brand colors, IDs, and functions.
 */
 
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
@@ -63,7 +63,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
-  padding-top: 74px; /* Ensure content is not hidden beneath fixed header */
 }
 
 ::selection {
@@ -190,7 +189,7 @@ img {
 
 /* Header & Navigation */
 #header-placeholder {
-  background: rgba(255, 255, 255, 0.92);
+  background: rgba(255, 255, 255, 0.94);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   box-shadow: 0 1px 12px rgba(0, 0, 0, 0.05);
@@ -285,7 +284,7 @@ img {
 /* Hero Section */
 .hero {
   position: relative;
-  padding: 80px 0 70px;
+  padding: 120px 0 65px;
   background: radial-gradient(850px circle at 50% 0%, rgba(124, 179, 66, 0.12) 0%, rgba(251, 140, 0, 0.05) 50%, transparent 80%), linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
   text-align: center;
   border-bottom: 1px solid var(--border-subtle);
@@ -380,6 +379,12 @@ img {
 section {
   padding: 80px 0;
   position: relative;
+}
+
+/* Handle first section/container for non-hero pages */
+main > section:first-child:not(.hero),
+main > article:first-child {
+  padding-top: 110px;
 }
 
 .section-title {
@@ -892,59 +897,31 @@ footer::before {
 }
 
 /* ========================================================
-   SCROLL REVEAL ANIMATIONS
-   Triggered as user scrolls content into viewport
+   SCROLL REVEAL ANIMATIONS (Fail-safe architecture)
+   Elements default to visible; animated only when JS active
    ======================================================== */
 .reveal, [data-reveal] {
+  opacity: 1;
+  transform: none;
+}
+
+html.sr-ready .reveal:not(.revealed),
+html.sr-ready [data-reveal]:not(.revealed) {
   opacity: 0;
-  transform: translateY(32px);
-  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(26px);
+  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform;
 }
 
-.reveal.revealed, [data-reveal].revealed {
+html.sr-ready .reveal.revealed,
+html.sr-ready [data-reveal].revealed {
   opacity: 1;
   transform: translateY(0);
 }
 
-.reveal-left {
-  opacity: 0;
-  transform: translateX(-36px);
-  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: opacity, transform;
-}
-
-.reveal-left.revealed {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-.reveal-right {
-  opacity: 0;
-  transform: translateX(36px);
-  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: opacity, transform;
-}
-
-.reveal-right.revealed {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-.reveal-scale {
-  opacity: 0;
-  transform: scale(0.92);
-  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: opacity, transform;
-}
-
-.reveal-scale.revealed {
-  opacity: 1;
-  transform: scale(1);
-}
-
 @media (prefers-reduced-motion: reduce) {
-  .reveal, [data-reveal], .reveal-left, .reveal-right, .reveal-scale {
+  html.sr-ready .reveal:not(.revealed),
+  html.sr-ready [data-reveal]:not(.revealed) {
     opacity: 1 !important;
     transform: none !important;
     transition: none !important;
@@ -953,11 +930,10 @@ footer::before {
 
 /* ========================================================
    DOCUMENTATION PAGE (docs.html) STYLES
-   Aesthetic, Modern, Light Palette with Brand Accents
    ======================================================== */
 .docs-hero {
   background: radial-gradient(900px circle at 50% 0%, rgba(124, 179, 66, 0.14) 0%, rgba(251, 140, 0, 0.06) 50%, transparent 80%), #ffffff;
-  padding: 60px 0 50px;
+  padding: 115px 0 45px;
   border-bottom: 1px solid var(--border-subtle);
   text-align: center;
 }
@@ -1006,13 +982,13 @@ footer::before {
 
 .docs-sidebar {
   position: sticky;
-  top: 100px;
+  top: 95px;
   background: #ffffff;
   border: 1px solid var(--border-subtle);
   border-radius: var(--border-radius);
   padding: 24px 18px;
   box-shadow: var(--shadow-sm);
-  max-height: calc(100vh - 120px);
+  max-height: calc(100vh - 110px);
   overflow-y: auto;
 }
 
@@ -1061,7 +1037,7 @@ footer::before {
 }
 
 .docs-section {
-  scroll-margin-top: 100px;
+  scroll-margin-top: 95px;
   background: #ffffff;
   border: 1px solid var(--border-subtle);
   border-radius: var(--border-radius);
@@ -1246,10 +1222,6 @@ footer::before {
 }
 
 @media (max-width: 768px) {
-  body {
-    padding-top: 70px;
-  }
-
   .navbar {
     height: 70px;
   }
@@ -1308,7 +1280,7 @@ footer::before {
   }
 
   .hero {
-    padding: 60px 0 50px;
+    padding: 95px 0 50px;
   }
 
   .hero h1 {
@@ -1349,6 +1321,10 @@ footer::before {
     right: 18px;
     width: 44px;
     height: 44px;
+  }
+
+  .docs-hero {
+    padding: 95px 0 35px;
   }
 
   .docs-section {
