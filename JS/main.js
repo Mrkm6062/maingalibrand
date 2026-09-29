@@ -12,6 +12,14 @@ function initMobileMenu() {
                 hamburger.textContent = '☰';
             }
         });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (navLinks.classList.contains('active') && !navLinks.contains(e.target) && !hamburger.contains(e.target)) {
+                navLinks.classList.remove('active');
+                hamburger.textContent = '☰';
+            }
+        });
     }
 }
 
@@ -24,6 +32,7 @@ function setActiveNavLink() {
 
     navLinks.forEach(link => {
         const linkPath = link.getAttribute('href');
+        if (!linkPath) return;
         // Normalize link path for comparison
         const cleanLinkPath = linkPath.endsWith('/index.html') ? linkPath.substring(0, linkPath.length - 10) : linkPath.replace('.html', '');
         
@@ -50,11 +59,10 @@ function initBackToTop() {
     const backToTopBtn = document.getElementById('backToTop');
     const footer = document.getElementById('footer-placeholder');
 
-    if (backToTopBtn && footer) {
+    if (backToTopBtn) {
         window.addEventListener('scroll', () => {
-            const rect = footer.getBoundingClientRect();
-            // Show button only when footer is entering the viewport
-            if (rect.top <= window.innerHeight) {
+            // Show button after user scrolls down 300px
+            if (window.scrollY > 300) {
                 backToTopBtn.classList.add('show');
             } else {
                 backToTopBtn.classList.remove('show');
@@ -354,9 +362,10 @@ function renderPricingCards() {
         return priceA - priceB;
     });
 
-    currentPricingPlans.forEach(plan => {
+    currentPricingPlans.forEach((plan, cardIndex) => {
         const card = document.createElement('div');
-        card.className = 'card pricing-card';
+        card.className = 'card pricing-card reveal';
+        card.style.transitionDelay = `${(cardIndex % 4) * 0.1}s`;
 
         const isPopular = Boolean(plan.popular || plan.is_popular || plan.name === 'Pro');
         if (isPopular) {
@@ -435,11 +444,152 @@ function renderPricingCards() {
         `;
         pricingGrid.appendChild(card);
     });
+
+    if (typeof window.refreshScrollAnimations === 'function') {
+        window.refreshScrollAnimations();
+    }
+}
+
+// ========================================================
+// SCROLL REVEAL ANIMATIONS
+// Smoothly brings up content as user scrolls down
+// ========================================================
+function initScrollAnimations() {
+    const revealSelector = '.reveal, [data-reveal], section .card, section .grid-3 > *, section .grid-2 > *, .section-title, .section-subtitle, .docs-section, .docs-step, .faq-item, .hero-buttons, .highlight-box, .cta-box';
+    
+    const elementsToReveal = document.querySelectorAll(revealSelector);
+    elementsToReveal.forEach(el => {
+        if (!el.classList.contains('reveal')) {
+            el.classList.add('reveal');
+        }
+    });
+
+    // Check if IntersectionObserver is supported
+    if (!('IntersectionObserver' in window)) {
+        elementsToReveal.forEach(el => el.classList.add('revealed'));
+        return;
+    }
+
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px 0px -40px 0px',
+        threshold: 0.08
+    };
+
+    const scrollObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('revealed');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    // Initial check: if already in initial viewport, reveal immediately
+    elementsToReveal.forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight && rect.bottom > 0) {
+            el.classList.add('revealed');
+        } else {
+            scrollObserver.observe(el);
+        }
+    });
+
+    // Handle staggered animation for grid items
+    document.querySelectorAll('.grid-3, .grid-2, .pricing-grid-4').forEach(grid => {
+        const items = grid.querySelectorAll('.reveal');
+        items.forEach((item, index) => {
+            item.style.transitionDelay = `${(index % 3) * 0.12}s`;
+        });
+    });
+
+    // Expose refresh function for dynamic elements
+    window.refreshScrollAnimations = function() {
+        const newElements = document.querySelectorAll('#pricing-grid .pricing-card, .reveal:not(.revealed)');
+        newElements.forEach((el, index) => {
+            el.classList.add('reveal');
+            el.style.transitionDelay = `${(index % 4) * 0.1}s`;
+            const rect = el.getBoundingClientRect();
+            if (rect.top < window.innerHeight && rect.bottom > 0) {
+                el.classList.add('revealed');
+            } else {
+                scrollObserver.observe(el);
+            }
+        });
+    };
+}
+
+// ========================================================
+// DOCS PAGE INTERACTIVE LOGIC (docs.html)
+// ========================================================
+function initDocsPage() {
+    const searchInput = document.querySelector('.docs-search-input');
+    const docSections = document.querySelectorAll('.docs-section');
+    const sidebarLinks = document.querySelectorAll('.docs-nav-item a');
+
+    // Live search/filter
+    if (searchInput && docSections.length > 0) {
+        searchInput.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase().trim();
+            docSections.forEach(section => {
+                const text = section.textContent.toLowerCase();
+                if (query === '' || text.includes(query)) {
+                    section.style.display = 'block';
+                } else {
+                    section.style.display = 'none';
+                }
+            });
+        });
+    }
+
+    // Active sidebar link on scroll
+    if (sidebarLinks.length > 0 && docSections.length > 0 && 'IntersectionObserver' in window) {
+        const sectionObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const id = entry.target.getAttribute('id');
+                    sidebarLinks.forEach(link => {
+                        if (link.getAttribute('href') === `#${id}`) {
+                            link.classList.add('active');
+                        } else {
+                            link.classList.remove('active');
+                        }
+                    });
+                }
+            });
+        }, {
+            rootMargin: '-20% 0px -65% 0px'
+        });
+
+        docSections.forEach(section => sectionObserver.observe(section));
+    }
+
+    // Copy to clipboard for code snippets
+    document.querySelectorAll('.docs-copy-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const codeEl = btn.closest('.docs-code-snippet');
+            const textToCopy = btn.getAttribute('data-copy') || (codeEl ? codeEl.querySelector('span, code')?.textContent : '') || '';
+            if (textToCopy) {
+                navigator.clipboard.writeText(textToCopy.trim()).then(() => {
+                    const originalText = btn.textContent;
+                    btn.textContent = 'Copied! ✓';
+                    btn.style.backgroundColor = '#7CB342';
+                    setTimeout(() => {
+                        btn.textContent = originalText;
+                        btn.style.backgroundColor = '';
+                    }, 2000);
+                }).catch(err => console.error('Copy failed:', err));
+            }
+        });
+    });
 }
 
 document.addEventListener('DOMContentLoaded', () => {
     loadPartials();
     loadPricingPlans();
+    initScrollAnimations();
+    initDocsPage();
+
     // --- Smooth Scroll for Anchor Links ---
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
@@ -453,9 +603,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     behavior: 'smooth'
                 });
                 // Close mobile menu if open
-                if (navLinks.classList.contains('active')) {
+                const navLinks = document.querySelector('.nav-links');
+                const hamburger = document.querySelector('.hamburger');
+                if (navLinks && navLinks.classList.contains('active')) {
                     navLinks.classList.remove('active');
-                    hamburger.textContent = '☰';
+                    if (hamburger) hamburger.textContent = '☰';
                 }
             }
         });
