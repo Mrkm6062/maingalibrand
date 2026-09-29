@@ -897,20 +897,20 @@ footer::before {
 }
 
 /* ========================================================
-   SCROLL REVEAL ANIMATIONS (Fail-safe architecture)
-   Elements default to visible; animated only when JS active
+   SCROLL REVEAL ANIMATIONS (Smooth & Reliable)
+   Elements default to visible; animated smoothly when JS active
    ======================================================== */
 .reveal, [data-reveal] {
   opacity: 1;
   transform: none;
+  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
 }
 
 html.sr-ready .reveal:not(.revealed),
 html.sr-ready [data-reveal]:not(.revealed) {
   opacity: 0;
-  transform: translateY(26px);
-  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: opacity, transform;
+  transform: translateY(28px);
 }
 
 html.sr-ready .reveal.revealed,
