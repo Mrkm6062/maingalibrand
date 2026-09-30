@@ -50,291 +50,296 @@
 
     <link rel="stylesheet" href="/css/style.css?v=3.0">
 </head>
-<body class="bg-white text-slate-800 antialiased font-sans">
+<body class="bg-slate-50 text-slate-800 antialiased font-sans">
 
     <!-- Navigation Header -->
     <header id="header-placeholder"></header>
 
     <main class="pt-[74px]">
         <!-- Hero Section -->
-        <section class="docs-hero">
-            <div class="container">
-                <div class="hero-badge">
+        <section class="docs-hero relative overflow-hidden bg-gradient-to-b from-[#f1f8e9]/60 via-white to-slate-50 py-16 md:py-20 text-center">
+            <div class="container mx-auto px-6 max-w-[1200px]">
+                <div class="hero-badge inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#f1f8e9] text-[#558b2f] text-sm font-bold border border-[#c5e1a5] mb-6 shadow-sm">
                     <span class="pulse-dot"></span>
                     Galibrand Knowledge Base & Guides
                 </div>
-                <h1>Merchant Documentation</h1>
-                <p>Simple step-by-step tutorials and best practices to help Indian shop owners succeed online with zero commissions.</p>
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight leading-[1.15] mb-4 max-w-4xl mx-auto">
+                    Merchant Documentation
+                </h1>
+                <p class="text-lg md:text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed mb-8">
+                    Simple step-by-step tutorials and best practices to help Indian shop owners succeed online with zero commissions.
+                </p>
                 
                 <!-- Quick Topic Search -->
-                <div class="docs-search-bar">
-                    <span class="docs-search-icon">🔍</span>
-                    <input type="text" class="docs-search-input" placeholder="Search guides, setup topics, or features (e.g. UPI, delivery, veg pricing)..." aria-label="Search documentation">
+                <div class="docs-search-bar max-w-2xl mx-auto relative">
+                    <span class="docs-search-icon absolute left-5 top-1/2 -translate-y-1/2 text-lg text-slate-400 pointer-events-none">🔍</span>
+                    <input type="text" class="docs-search-input w-full pl-12 pr-6 py-4 rounded-full border border-slate-300 bg-white text-slate-900 shadow-md focus:outline-none focus:ring-2 focus:ring-[#7CB342]/40 focus:border-[#7CB342] text-sm md:text-base transition-all" placeholder="Search guides, setup topics, or features (e.g. UPI, delivery, veg pricing)..." aria-label="Search documentation">
                 </div>
             </div>
         </section>
 
         <!-- Main Documentation Layout -->
-        <div class="container">
-            <div class="docs-layout">
+        <div class="container mx-auto px-6 max-w-[1200px] py-12">
+            <div class="docs-layout grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                
                 <!-- Sidebar Navigation -->
-                <aside class="docs-sidebar">
-                    <div class="docs-sidebar-title">Getting Started</div>
-                    <ul class="docs-nav-list" style="margin-bottom: 20px;">
-                        <li class="docs-nav-item"><a href="#quickstart" class="active">🚀 Quick Start</a></li>
-                        <li class="docs-nav-item"><a href="#catalog">📦 Product Catalog</a></li>
-                        <li class="docs-nav-item"><a href="#pricing-weights">⚖️ Daily & Weight Pricing</a></li>
+                <aside class="docs-sidebar lg:col-span-4 xl:col-span-3 sticky top-24 bg-white border border-slate-200 rounded-3xl p-6 shadow-sm">
+                    <div class="docs-sidebar-title text-xs font-extrabold uppercase tracking-wider text-slate-400 mb-3">Getting Started</div>
+                    <ul class="docs-nav-list space-y-1 mb-6">
+                        <li class="docs-nav-item"><a href="#quickstart" class="active block px-4 py-2 rounded-xl text-sm font-bold text-[#558b2f] bg-[#f1f8e9] transition-all">🚀 Quick Start</a></li>
+                        <li class="docs-nav-item"><a href="#catalog" class="block px-4 py-2 rounded-xl text-sm font-medium text-slate-600 hover:text-[#558b2f] hover:bg-[#f1f8e9] transition-all">📦 Product Catalog</a></li>
+                        <li class="docs-nav-item"><a href="#pricing-weights" class="block px-4 py-2 rounded-xl text-sm font-medium text-slate-600 hover:text-[#558b2f] hover:bg-[#f1f8e9] transition-all">⚖️ Daily & Weight Pricing</a></li>
                     </ul>
 
-                    <div class="docs-sidebar-title">Store Operations</div>
-                    <ul class="docs-nav-list" style="margin-bottom: 20px;">
-                        <li class="docs-nav-item"><a href="#orders">🛵 Order Management</a></li>
-                        <li class="docs-nav-item"><a href="#payments">💳 UPI & COD Payments</a></li>
-                        <li class="docs-nav-item"><a href="#delivery">🚚 Delivery & Pincodes</a></li>
+                    <div class="docs-sidebar-title text-xs font-extrabold uppercase tracking-wider text-slate-400 mb-3">Store Operations</div>
+                    <ul class="docs-nav-list space-y-1 mb-6">
+                        <li class="docs-nav-item"><a href="#orders" class="block px-4 py-2 rounded-xl text-sm font-medium text-slate-600 hover:text-[#558b2f] hover:bg-[#f1f8e9] transition-all">🛵 Order Management</a></li>
+                        <li class="docs-nav-item"><a href="#payments" class="block px-4 py-2 rounded-xl text-sm font-medium text-slate-600 hover:text-[#558b2f] hover:bg-[#f1f8e9] transition-all">💳 UPI & COD Payments</a></li>
+                        <li class="docs-nav-item"><a href="#delivery" class="block px-4 py-2 rounded-xl text-sm font-medium text-slate-600 hover:text-[#558b2f] hover:bg-[#f1f8e9] transition-all">🚚 Delivery & Pincodes</a></li>
                     </ul>
 
-                    <div class="docs-sidebar-title">Growth & Tech</div>
-                    <ul class="docs-nav-list">
-                        <li class="docs-nav-item"><a href="#pwa">📱 PWA & WhatsApp Sharing</a></li>
-                        <li class="docs-nav-item"><a href="#domain">🌐 Custom Domains</a></li>
-                        <li class="docs-nav-item"><a href="#faqs">❓ FAQs & Support</a></li>
+                    <div class="docs-sidebar-title text-xs font-extrabold uppercase tracking-wider text-slate-400 mb-3">Growth & Tech</div>
+                    <ul class="docs-nav-list space-y-1">
+                        <li class="docs-nav-item"><a href="#pwa" class="block px-4 py-2 rounded-xl text-sm font-medium text-slate-600 hover:text-[#558b2f] hover:bg-[#f1f8e9] transition-all">📱 PWA & WhatsApp Sharing</a></li>
+                        <li class="docs-nav-item"><a href="#domain" class="block px-4 py-2 rounded-xl text-sm font-medium text-slate-600 hover:text-[#558b2f] hover:bg-[#f1f8e9] transition-all">🌐 Custom Domains</a></li>
+                        <li class="docs-nav-item"><a href="#faqs" class="block px-4 py-2 rounded-xl text-sm font-medium text-slate-600 hover:text-[#558b2f] hover:bg-[#f1f8e9] transition-all">❓ FAQs & Support</a></li>
                     </ul>
                 </aside>
 
                 <!-- Documentation Content -->
-                <article class="docs-content">
+                <article class="docs-content lg:col-span-8 xl:col-span-9 space-y-8">
                     
                     <!-- Section 1: Quick Start -->
-                    <section id="quickstart" class="docs-section reveal">
-                        <div class="docs-section-tag">🏁 Setup Guide</div>
-                        <h2>1. Quick Start: Launch Your Store in 15 Minutes</h2>
-                        <p>Welcome to Galibrand! Our platform is built specifically for Indian local businesses — including Kirana stores, vegetable and fruit shops, bakeries, and street food vendors. Follow these simple steps to go live today:</p>
+                    <section id="quickstart" class="docs-section reveal bg-white rounded-3xl p-8 md:p-10 border border-slate-200/90 shadow-sm">
+                        <div class="docs-section-tag inline-block px-3.5 py-1 rounded-full text-xs font-bold tracking-wide uppercase bg-[#f1f8e9] text-[#558b2f] mb-4">🏁 Setup Guide</div>
+                        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-4 tracking-tight">1. Quick Start: Launch Your Store in 15 Minutes</h2>
+                        <p class="text-slate-600 leading-relaxed text-base mb-6">Welcome to Galibrand! Our platform is built specifically for Indian local businesses — including Kirana stores, vegetable and fruit shops, bakeries, and street food vendors. Follow these simple steps to go live today:</p>
                         
-                        <div class="docs-steps">
-                            <div class="docs-step">
-                                <div class="docs-step-badge">1</div>
-                                <div class="docs-step-content">
-                                    <h4>Sign Up & Claim Your Store Link</h4>
-                                    <p>Our team sets up your unique link (e.g., <code>galibrand.cloud/shop/your-dukaan</code>) or your custom domain. You'll receive your login credentials via WhatsApp and SMS.</p>
+                        <div class="docs-steps space-y-4 mb-6">
+                            <div class="docs-step flex items-start gap-4 p-4 rounded-2xl bg-slate-50 border border-slate-200/70">
+                                <div class="docs-step-badge w-10 h-10 rounded-xl bg-gradient-to-br from-[#7CB342] to-[#689f38] text-white font-black text-base flex items-center justify-center shrink-0 shadow-sm">1</div>
+                                <div class="docs-step-content flex-grow">
+                                    <h4 class="text-base font-bold text-slate-900 mb-1">Sign Up & Claim Your Store Link</h4>
+                                    <p class="text-slate-600 text-sm leading-relaxed mb-0">Our team sets up your unique link (e.g., <code class="px-2 py-0.5 rounded bg-slate-200/80 text-slate-800 font-mono text-xs">galibrand.cloud/shop/your-dukaan</code>) or your custom domain. You'll receive your login credentials via WhatsApp and SMS.</p>
                                 </div>
                             </div>
-                            <div class="docs-step">
-                                <div class="docs-step-badge">2</div>
-                                <div class="docs-step-content">
-                                    <h4>Enter Store Timings & Contact Info</h4>
-                                    <p>Go to <strong>Settings &gt; Shop Profile</strong>. Set your shop opening and closing hours, customer support phone number, and local address.</p>
+                            <div class="docs-step flex items-start gap-4 p-4 rounded-2xl bg-slate-50 border border-slate-200/70">
+                                <div class="docs-step-badge w-10 h-10 rounded-xl bg-gradient-to-br from-[#7CB342] to-[#689f38] text-white font-black text-base flex items-center justify-center shrink-0 shadow-sm">2</div>
+                                <div class="docs-step-content flex-grow">
+                                    <h4 class="text-base font-bold text-slate-900 mb-1">Enter Store Timings & Contact Info</h4>
+                                    <p class="text-slate-600 text-sm leading-relaxed mb-0">Go to <strong>Settings &gt; Shop Profile</strong>. Set your shop opening and closing hours, customer support phone number, and local address.</p>
                                 </div>
                             </div>
-                            <div class="docs-step">
-                                <div class="docs-step-badge">3</div>
-                                <div class="docs-step-content">
-                                    <h4>Set Your Delivery Area</h4>
-                                    <p>Specify the local pincodes, colonies, or maximum delivery radius (e.g., within 3 km or 5 km) that your delivery boys cover.</p>
+                            <div class="docs-step flex items-start gap-4 p-4 rounded-2xl bg-slate-50 border border-slate-200/70">
+                                <div class="docs-step-badge w-10 h-10 rounded-xl bg-gradient-to-br from-[#7CB342] to-[#689f38] text-white font-black text-base flex items-center justify-center shrink-0 shadow-sm">3</div>
+                                <div class="docs-step-content flex-grow">
+                                    <h4 class="text-base font-bold text-slate-900 mb-1">Set Your Delivery Area</h4>
+                                    <p class="text-slate-600 text-sm leading-relaxed mb-0">Specify the local pincodes, colonies, or maximum delivery radius (e.g., within 3 km or 5 km) that your delivery boys cover.</p>
                                 </div>
                             </div>
-                            <div class="docs-step">
-                                <div class="docs-step-badge">4</div>
-                                <div class="docs-step-content">
-                                    <h4>Share Your Store Link on WhatsApp</h4>
-                                    <p>Send your store link to your regular customers via WhatsApp. They can immediately open it in their browser and start ordering with zero app install required.</p>
+                            <div class="docs-step flex items-start gap-4 p-4 rounded-2xl bg-slate-50 border border-slate-200/70">
+                                <div class="docs-step-badge w-10 h-10 rounded-xl bg-gradient-to-br from-[#7CB342] to-[#689f38] text-white font-black text-base flex items-center justify-center shrink-0 shadow-sm">4</div>
+                                <div class="docs-step-content flex-grow">
+                                    <h4 class="text-base font-bold text-slate-900 mb-1">Share Your Store Link on WhatsApp</h4>
+                                    <p class="text-slate-600 text-sm leading-relaxed mb-0">Send your store link to your regular customers via WhatsApp. They can immediately open it in their browser and start ordering with zero app install required.</p>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="docs-callout docs-callout-tip">
-                            <span class="docs-callout-icon">💡</span>
-                            <p><strong>Pro Tip:</strong> We provide free catalog upload assistance on all plans! Simply send us your price list or menu on WhatsApp, and our team will upload your items for you.</p>
+                        <div class="docs-callout docs-callout-tip flex items-start gap-3 p-5 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-950 text-sm leading-relaxed">
+                            <span class="docs-callout-icon text-xl shrink-0">💡</span>
+                            <p class="mb-0"><strong>Pro Tip:</strong> We provide free catalog upload assistance on all plans! Simply send us your price list or menu on WhatsApp, and our team will upload your items for you.</p>
                         </div>
                     </section>
 
                     <!-- Section 2: Catalog Management -->
-                    <section id="catalog" class="docs-section reveal">
-                        <div class="docs-section-tag">📦 Catalog & Inventory</div>
-                        <h2>2. Managing Products & Categories</h2>
-                        <p>Keep your digital shelves neat and attractive so your neighborhood customers can find what they need in seconds.</p>
+                    <section id="catalog" class="docs-section reveal bg-white rounded-3xl p-8 md:p-10 border border-slate-200/90 shadow-sm">
+                        <div class="docs-section-tag inline-block px-3.5 py-1 rounded-full text-xs font-bold tracking-wide uppercase bg-[#f1f8e9] text-[#558b2f] mb-4">📦 Catalog & Inventory</div>
+                        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-4 tracking-tight">2. Managing Products & Categories</h2>
+                        <p class="text-slate-600 leading-relaxed text-base mb-6">Keep your digital shelves neat and attractive so your neighborhood customers can find what they need in seconds.</p>
 
-                        <div class="grid-2" style="margin-bottom: 24px;">
-                            <div class="card" style="padding: 24px;">
-                                <h3 style="font-size: 1.15rem; color: var(--primary-blue);">Adding Single Items</h3>
-                                <p style="font-size: 0.95rem;">Enter product title, select category (e.g., Staples, Dairy, Oils, Spices), set retail price (MRP vs Selling Price), and upload a photo.</p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                            <div class="card bg-slate-50 rounded-2xl p-6 border border-slate-200/80">
+                                <h3 class="text-lg font-bold text-[#7CB342] mb-2">Adding Single Items</h3>
+                                <p class="text-slate-600 text-sm leading-relaxed mb-0">Enter product title, select category (e.g., Staples, Dairy, Oils, Spices), set retail price (MRP vs Selling Price), and upload a photo.</p>
                             </div>
-                            <div class="card" style="padding: 24px;">
-                                <h3 style="font-size: 1.15rem; color: var(--primary-green);">Instant Stock Toggle</h3>
-                                <p style="font-size: 0.95rem;">Ran out of an item? Simply flip the toggle next to the product to mark it "Out of Stock" instantly so customers won't order it.</p>
+                            <div class="card bg-slate-50 rounded-2xl p-6 border border-slate-200/80">
+                                <h3 class="text-lg font-bold text-[#FB8C00] mb-2">Instant Stock Toggle</h3>
+                                <p class="text-slate-600 text-sm leading-relaxed mb-0">Ran out of an item? Simply flip the toggle next to the product to mark it "Out of Stock" instantly so customers won't order it.</p>
                             </div>
                         </div>
 
-                        <div class="docs-callout docs-callout-note">
-                            <span class="docs-callout-icon">ℹ️</span>
-                            <p><strong>Image Quality:</strong> Clean square photos (1:1 aspect ratio, JPEG or WebP) taken on your smartphone work best. Crisp packaging photos increase orders by up to 40%!</p>
+                        <div class="docs-callout docs-callout-note flex items-start gap-3 p-5 rounded-2xl bg-blue-50 border border-blue-200 text-blue-950 text-sm leading-relaxed">
+                            <span class="docs-callout-icon text-xl shrink-0">ℹ️</span>
+                            <p class="mb-0"><strong>Image Quality:</strong> Clean square photos (1:1 aspect ratio, JPEG or WebP) taken on your smartphone work best. Crisp packaging photos increase orders by up to 40%!</p>
                         </div>
                     </section>
 
                     <!-- Section 3: Daily & Weight Pricing -->
-                    <section id="pricing-weights" class="docs-section reveal">
-                        <div class="docs-section-tag">⚖️ Vegetable & Fruit Shops</div>
-                        <h2>3. Daily Price Updates & Weight-Based Selling</h2>
-                        <p>Mandi rates change every single morning. Galibrand has built-in support for dynamic pricing and fractional weights tailored for vegetable vendors and wholesalers.</p>
+                    <section id="pricing-weights" class="docs-section reveal bg-white rounded-3xl p-8 md:p-10 border border-slate-200/90 shadow-sm">
+                        <div class="docs-section-tag inline-block px-3.5 py-1 rounded-full text-xs font-bold tracking-wide uppercase bg-[#fff3e0] text-[#ef6c00] mb-4">⚖️ Vegetable & Fruit Shops</div>
+                        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-4 tracking-tight">3. Daily Price Updates & Weight-Based Selling</h2>
+                        <p class="text-slate-600 leading-relaxed text-base mb-6">Mandi rates change every single morning. Galibrand has built-in support for dynamic pricing and fractional weights tailored for vegetable vendors and wholesalers.</p>
 
-                        <div class="docs-steps">
-                            <div class="docs-step">
-                                <div class="docs-step-badge">A</div>
-                                <div class="docs-step-content">
-                                    <h4>Morning Quick Price Update</h4>
-                                    <p>Open the "Daily Rates" screen on your mobile dashboard. You can update the prices of all fresh veggies in under 60 seconds each morning before opening.</p>
+                        <div class="docs-steps space-y-4">
+                            <div class="docs-step flex items-start gap-4 p-4 rounded-2xl bg-slate-50 border border-slate-200/70">
+                                <div class="docs-step-badge w-10 h-10 rounded-xl bg-gradient-to-br from-[#FB8C00] to-[#ef6c00] text-white font-black text-base flex items-center justify-center shrink-0 shadow-sm">A</div>
+                                <div class="docs-step-content flex-grow">
+                                    <h4 class="text-base font-bold text-slate-900 mb-1">Morning Quick Price Update</h4>
+                                    <p class="text-slate-600 text-sm leading-relaxed mb-0">Open the "Daily Rates" screen on your mobile dashboard. You can update the prices of all fresh veggies in under 60 seconds each morning before opening.</p>
                                 </div>
                             </div>
-                            <div class="docs-step">
-                                <div class="docs-step-badge">B</div>
-                                <div class="docs-step-content">
-                                    <h4>Weight Variations (250g, 500g, 1kg)</h4>
-                                    <p>Customers can select exact quantities such as 250 grams of ginger, 500 grams of tomatoes, or 5 kg sacks of potatoes. The total price calculates automatically.</p>
+                            <div class="docs-step flex items-start gap-4 p-4 rounded-2xl bg-slate-50 border border-slate-200/70">
+                                <div class="docs-step-badge w-10 h-10 rounded-xl bg-gradient-to-br from-[#FB8C00] to-[#ef6c00] text-white font-black text-base flex items-center justify-center shrink-0 shadow-sm">B</div>
+                                <div class="docs-step-content flex-grow">
+                                    <h4 class="text-base font-bold text-slate-900 mb-1">Weight Variations (250g, 500g, 1kg)</h4>
+                                    <p class="text-slate-600 text-sm leading-relaxed mb-0">Customers can select exact quantities such as 250 grams of ginger, 500 grams of tomatoes, or 5 kg sacks of potatoes. The total price calculates automatically.</p>
                                 </div>
                             </div>
-                            <div class="docs-step">
-                                <div class="docs-step-badge">C</div>
-                                <div class="docs-step-content">
-                                    <h4>Wholesale & MOQ (Minimum Order Quantity)</h4>
-                                    <p>Wholesalers can set minimum batch orders (e.g., minimum 10 packs or 50kg) and show tier-discounted wholesale rates to retail clients.</p>
+                            <div class="docs-step flex items-start gap-4 p-4 rounded-2xl bg-slate-50 border border-slate-200/70">
+                                <div class="docs-step-badge w-10 h-10 rounded-xl bg-gradient-to-br from-[#FB8C00] to-[#ef6c00] text-white font-black text-base flex items-center justify-center shrink-0 shadow-sm">C</div>
+                                <div class="docs-step-content flex-grow">
+                                    <h4 class="text-base font-bold text-slate-900 mb-1">Wholesale & MOQ (Minimum Order Quantity)</h4>
+                                    <p class="text-slate-600 text-sm leading-relaxed mb-0">Wholesalers can set minimum batch orders (e.g., minimum 10 packs or 50kg) and show tier-discounted wholesale rates to retail clients.</p>
                                 </div>
                             </div>
                         </div>
                     </section>
 
                     <!-- Section 4: Order Management -->
-                    <section id="orders" class="docs-section reveal">
-                        <div class="docs-section-tag">🛵 Order Operations</div>
-                        <h2>4. Processing Orders & WhatsApp Notifications</h2>
-                        <p>Never miss an order again. Our order management dashboard replaces the confusion of phone calls and messy chat messages.</p>
+                    <section id="orders" class="docs-section reveal bg-white rounded-3xl p-8 md:p-10 border border-slate-200/90 shadow-sm">
+                        <div class="docs-section-tag inline-block px-3.5 py-1 rounded-full text-xs font-bold tracking-wide uppercase bg-[#f1f8e9] text-[#558b2f] mb-4">🛵 Order Operations</div>
+                        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-4 tracking-tight">4. Processing Orders & WhatsApp Notifications</h2>
+                        <p class="text-slate-600 leading-relaxed text-base mb-6">Never miss an order again. Our order management dashboard replaces the confusion of phone calls and messy chat messages.</p>
 
-                        <div class="grid-3" style="margin: 24px 0;">
-                            <div class="card" style="padding: 22px;">
-                                <div style="font-size: 1.5rem; margin-bottom: 10px;">🔔</div>
-                                <h3 style="font-size: 1.1rem;">Sound Chime</h3>
-                                <p style="font-size: 0.9rem;">Your tablet or phone rings with an audible chime whenever a new order arrives from a customer.</p>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div class="card bg-slate-50 rounded-2xl p-6 border border-slate-200/80">
+                                <div class="text-3xl mb-3">🔔</div>
+                                <h3 class="text-lg font-bold text-slate-900 mb-1">Sound Chime</h3>
+                                <p class="text-slate-600 text-sm leading-relaxed mb-0">Your tablet or phone rings with an audible chime whenever a new order arrives from a customer.</p>
                             </div>
-                            <div class="card" style="padding: 22px;">
-                                <div style="font-size: 1.5rem; margin-bottom: 10px;">📦</div>
-                                <h3 style="font-size: 1.1rem;">Packing Checklist</h3>
-                                <p style="font-size: 0.9rem;">View the itemized packing list with quantities, customer delivery notes, and special instructions.</p>
+                            <div class="card bg-slate-50 rounded-2xl p-6 border border-slate-200/80">
+                                <div class="text-3xl mb-3">📦</div>
+                                <h3 class="text-lg font-bold text-slate-900 mb-1">Packing Checklist</h3>
+                                <p class="text-slate-600 text-sm leading-relaxed mb-0">View the itemized packing list with quantities, customer delivery notes, and special instructions.</p>
                             </div>
-                            <div class="card" style="padding: 22px;">
-                                <div style="font-size: 1.5rem; margin-bottom: 10px;">🚚</div>
-                                <h3 style="font-size: 1.1rem;">Dispatch Status</h3>
-                                <p style="font-size: 0.9rem;">Mark as "Out for Delivery" and the customer automatically receives an SMS/WhatsApp notification.</p>
+                            <div class="card bg-slate-50 rounded-2xl p-6 border border-slate-200/80">
+                                <div class="text-3xl mb-3">🚚</div>
+                                <h3 class="text-lg font-bold text-slate-900 mb-1">Dispatch Status</h3>
+                                <p class="text-slate-600 text-sm leading-relaxed mb-0">Mark as "Out for Delivery" and the customer automatically receives an SMS/WhatsApp notification.</p>
                             </div>
                         </div>
                     </section>
 
                     <!-- Section 5: Payment Setup -->
-                    <section id="payments" class="docs-section reveal">
-                        <div class="docs-section-tag">💳 0% Commission Payments</div>
-                        <h2>5. Direct UPI QR Code & Cash on Delivery</h2>
-                        <p>Unlike third-party aggregator apps that hold your money for weeks and deduct 25-30% in commission, <strong>Galibrand takes 0% commission</strong>. You keep 100% of your earnings.</p>
+                    <section id="payments" class="docs-section reveal bg-white rounded-3xl p-8 md:p-10 border border-slate-200/90 shadow-sm">
+                        <div class="docs-section-tag inline-block px-3.5 py-1 rounded-full text-xs font-bold tracking-wide uppercase bg-[#f1f8e9] text-[#558b2f] mb-4">💳 0% Commission Payments</div>
+                        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-4 tracking-tight">5. Direct UPI QR Code & Cash on Delivery</h2>
+                        <p class="text-slate-600 leading-relaxed text-base mb-6">Unlike third-party aggregator apps that hold your money for weeks and deduct 25-30% in commission, <strong>Galibrand takes 0% commission</strong>. You keep 100% of your earnings.</p>
 
-                        <div class="docs-steps">
-                            <div class="docs-step">
-                                <div class="docs-step-badge">1</div>
-                                <div class="docs-step-content">
-                                    <h4>Your Own UPI QR Code</h4>
-                                    <p>Upload your shop's PhonePe, Google Pay, or Paytm QR code in <strong>Settings &gt; Payments</strong>. Customers pay directly into your bank account.</p>
+                        <div class="docs-steps space-y-4">
+                            <div class="docs-step flex items-start gap-4 p-4 rounded-2xl bg-slate-50 border border-slate-200/70">
+                                <div class="docs-step-badge w-10 h-10 rounded-xl bg-gradient-to-br from-[#7CB342] to-[#689f38] text-white font-black text-base flex items-center justify-center shrink-0 shadow-sm">1</div>
+                                <div class="docs-step-content flex-grow">
+                                    <h4 class="text-base font-bold text-slate-900 mb-1">Your Own UPI QR Code</h4>
+                                    <p class="text-slate-600 text-sm leading-relaxed mb-0">Upload your shop's PhonePe, Google Pay, or Paytm QR code in <strong>Settings &gt; Payments</strong>. Customers pay directly into your bank account.</p>
                                 </div>
                             </div>
-                            <div class="docs-step">
-                                <div class="docs-step-badge">2</div>
-                                <div class="docs-step-content">
-                                    <h4>Cash on Delivery (COD)</h4>
-                                    <p>Enable COD so customers can pay your delivery staff directly in cash or upon delivery.</p>
+                            <div class="docs-step flex items-start gap-4 p-4 rounded-2xl bg-slate-50 border border-slate-200/70">
+                                <div class="docs-step-badge w-10 h-10 rounded-xl bg-gradient-to-br from-[#7CB342] to-[#689f38] text-white font-black text-base flex items-center justify-center shrink-0 shadow-sm">2</div>
+                                <div class="docs-step-content flex-grow">
+                                    <h4 class="text-base font-bold text-slate-900 mb-1">Cash on Delivery (COD)</h4>
+                                    <p class="text-slate-600 text-sm leading-relaxed mb-0">Enable COD so customers can pay your delivery staff directly in cash or upon delivery.</p>
                                 </div>
                             </div>
-                            <div class="docs-step">
-                                <div class="docs-step-badge">3</div>
-                                <div class="docs-step-content">
-                                    <h4>Digital Khata / Udhaar Logs</h4>
-                                    <p>Keep a digital ledger for trusted neighborhood families who settle their grocery bill on a weekly or monthly basis.</p>
+                            <div class="docs-step flex items-start gap-4 p-4 rounded-2xl bg-slate-50 border border-slate-200/70">
+                                <div class="docs-step-badge w-10 h-10 rounded-xl bg-gradient-to-br from-[#7CB342] to-[#689f38] text-white font-black text-base flex items-center justify-center shrink-0 shadow-sm">3</div>
+                                <div class="docs-step-content flex-grow">
+                                    <h4 class="text-base font-bold text-slate-900 mb-1">Digital Khata / Udhaar Logs</h4>
+                                    <p class="text-slate-600 text-sm leading-relaxed mb-0">Keep a digital ledger for trusted neighborhood families who settle their grocery bill on a weekly or monthly basis.</p>
                                 </div>
                             </div>
                         </div>
                     </section>
 
                     <!-- Section 6: Delivery Settings -->
-                    <section id="delivery" class="docs-section reveal">
-                        <div class="docs-section-tag">📍 Neighborhood Delivery</div>
-                        <h2>6. Delivery Areas, Pincodes & Free Delivery Limits</h2>
-                        <p>Configure exactly where you deliver and avoid orders from far away places you cannot service.</p>
+                    <section id="delivery" class="docs-section reveal bg-white rounded-3xl p-8 md:p-10 border border-slate-200/90 shadow-sm">
+                        <div class="docs-section-tag inline-block px-3.5 py-1 rounded-full text-xs font-bold tracking-wide uppercase bg-[#f1f8e9] text-[#558b2f] mb-4">📍 Neighborhood Delivery</div>
+                        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-4 tracking-tight">6. Delivery Areas, Pincodes & Free Delivery Limits</h2>
+                        <p class="text-slate-600 leading-relaxed text-base mb-6">Configure exactly where you deliver and avoid orders from far away places you cannot service.</p>
 
-                        <ul class="features-list" style="margin-top: 20px;">
-                            <li><strong>Pincode Restrictions:</strong> Add the specific 6-digit postal pincodes your shop covers.</li>
-                            <li><strong>Delivery Charges:</strong> Set a flat delivery fee (e.g. ₹20 or ₹30) for small orders.</li>
-                            <li><strong>Free Delivery Threshold:</strong> Offer Free Delivery on orders above a specified amount (e.g. "Free Home Delivery on orders above ₹499").</li>
-                            <li><strong>Store Pickup / Takeaway:</strong> Allow nearby customers to place their order online and pick up packed bags without waiting in line.</li>
+                        <ul class="features-list space-y-3 mb-6">
+                            <li class="flex items-start gap-3 text-slate-700 text-sm md:text-base"><span class="text-[#FB8C00] font-bold">✓</span> <div><strong>Pincode Restrictions:</strong> Add the specific 6-digit postal pincodes your shop covers.</div></li>
+                            <li class="flex items-start gap-3 text-slate-700 text-sm md:text-base"><span class="text-[#FB8C00] font-bold">✓</span> <div><strong>Delivery Charges:</strong> Set a flat delivery fee (e.g. ₹20 or ₹30) for small orders.</div></li>
+                            <li class="flex items-start gap-3 text-slate-700 text-sm md:text-base"><span class="text-[#FB8C00] font-bold">✓</span> <div><strong>Free Delivery Threshold:</strong> Offer Free Delivery on orders above a specified amount (e.g. "Free Home Delivery on orders above ₹499").</div></li>
+                            <li class="flex items-start gap-3 text-slate-700 text-sm md:text-base"><span class="text-[#FB8C00] font-bold">✓</span> <div><strong>Store Pickup / Takeaway:</strong> Allow nearby customers to place their order online and pick up packed bags without waiting in line.</div></li>
                         </ul>
                     </section>
 
                     <!-- Section 7: PWA & Link Sharing -->
-                    <section id="pwa" class="docs-section reveal">
-                        <div class="docs-section-tag">📱 Customer Experience</div>
-                        <h2>7. Customer PWA & WhatsApp Sharing</h2>
-                        <p>Your shop functions as a high-speed Progressive Web App (PWA). Customers do not need to download heavy apps from the Play Store or register complicated passwords.</p>
+                    <section id="pwa" class="docs-section reveal bg-white rounded-3xl p-8 md:p-10 border border-slate-200/90 shadow-sm">
+                        <div class="docs-section-tag inline-block px-3.5 py-1 rounded-full text-xs font-bold tracking-wide uppercase bg-[#f1f8e9] text-[#558b2f] mb-4">📱 Customer Experience</div>
+                        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-4 tracking-tight">7. Customer PWA & WhatsApp Sharing</h2>
+                        <p class="text-slate-600 leading-relaxed text-base mb-4">Your shop functions as a high-speed Progressive Web App (PWA). Customers do not need to download heavy apps from the Play Store or register complicated passwords.</p>
 
-                        <p>Copy and customize this ready-to-send WhatsApp broadcast message for your regular customers:</p>
+                        <p class="text-slate-700 font-medium text-sm mb-3">Copy and customize this ready-to-send WhatsApp broadcast message for your regular customers:</p>
 
-                        <div class="docs-code-snippet">
-                            <span>Namaste! Hamari dukaan ab online ho gayi hai! 🛒 Ab aap ghar baithe taaze fal, sabzi aur kirana ka samaan mangwa sakte hain: https://galibrand.cloud/shop/apnidukaan Free Home Delivery uplabdh hai!</span>
-                            <button class="docs-copy-btn" data-copy="Namaste! Hamari dukaan ab online ho gayi hai! 🛒 Ab aap ghar baithe taaze fal, sabzi aur kirana ka samaan mangwa sakte hain: https://galibrand.cloud/shop/apnidukaan Free Home Delivery uplabdh hai!">Copy</button>
+                        <div class="docs-code-snippet flex flex-col sm:flex-row items-center justify-between gap-4 p-4 rounded-2xl bg-slate-900 text-slate-100 text-sm font-mono mb-6">
+                            <span class="break-words">Namaste! Hamari dukaan ab online ho gayi hai! 🛒 Ab aap ghar baithe taaze fal, sabzi aur kirana ka samaan mangwa sakte hain: https://galibrand.cloud/shop/apnidukaan Free Home Delivery uplabdh hai!</span>
+                            <button class="docs-copy-btn px-4 py-2 rounded-xl text-xs font-bold text-white bg-[#7CB342] hover:bg-[#689f38] transition-all cursor-pointer shrink-0" data-copy="Namaste! Hamari dukaan ab online ho gayi hai! 🛒 Ab aap ghar baithe taaze fal, sabzi aur kirana ka samaan mangwa sakte hain: https://galibrand.cloud/shop/apnidukaan Free Home Delivery uplabdh hai!">Copy</button>
                         </div>
 
-                        <div class="docs-callout docs-callout-tip">
-                            <span class="docs-callout-icon">📲</span>
-                            <p><strong>Add to Home Screen:</strong> When customers visit your website on Chrome or Safari, they will see an "Add to Home Screen" prompt. Once tapped, your shop's app icon sits right on their phone screen like a native app!</p>
+                        <div class="docs-callout docs-callout-tip flex items-start gap-3 p-5 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-950 text-sm leading-relaxed">
+                            <span class="docs-callout-icon text-xl shrink-0">📲</span>
+                            <p class="mb-0"><strong>Add to Home Screen:</strong> When customers visit your website on Chrome or Safari, they will see an "Add to Home Screen" prompt. Once tapped, your shop's app icon sits right on their phone screen like a native app!</p>
                         </div>
                     </section>
 
                     <!-- Section 8: Custom Domain -->
-                    <section id="domain" class="docs-section reveal">
-                        <div class="docs-section-tag">🌐 Custom Brand</div>
-                        <h2>8. Connecting Your Custom Domain (.com / .in)</h2>
-                        <p>Strengthen your shop's independent brand with your very own domain name (such as <code>www.rameshkirana.com</code>).</p>
+                    <section id="domain" class="docs-section reveal bg-white rounded-3xl p-8 md:p-10 border border-slate-200/90 shadow-sm">
+                        <div class="docs-section-tag inline-block px-3.5 py-1 rounded-full text-xs font-bold tracking-wide uppercase bg-[#f1f8e9] text-[#558b2f] mb-4">🌐 Custom Brand</div>
+                        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-4 tracking-tight">8. Connecting Your Custom Domain (.com / .in)</h2>
+                        <p class="text-slate-600 leading-relaxed text-base mb-6">Strengthen your shop's independent brand with your very own domain name (such as <code class="px-2 py-0.5 rounded bg-slate-200/80 text-slate-800 font-mono text-xs">www.rameshkirana.com</code>).</p>
 
-                        <div class="card" style="margin: 20px 0; background: var(--bg-light);">
-                            <h3 style="font-size: 1.15rem; color: var(--dark-text);">DNS Configuration</h3>
-                            <p style="font-size: 0.95rem; margin-bottom: 12px;">Add these records in your domain registrar (GoDaddy, Namecheap, Hostinger):</p>
-                            <div class="docs-code-snippet" style="margin: 10px 0;">
-                                <code>CNAME  www  galibrand.cloud</code>
+                        <div class="card bg-slate-50 rounded-2xl p-6 border border-slate-200/80">
+                            <h3 class="text-lg font-bold text-slate-900 mb-2">DNS Configuration</h3>
+                            <p class="text-slate-600 text-sm mb-3">Add these records in your domain registrar (GoDaddy, Namecheap, Hostinger):</p>
+                            <div class="docs-code-snippet p-4 rounded-xl bg-slate-900 text-slate-100 font-mono text-sm mb-3">
+                                <code>CNAME &nbsp;www &nbsp;galibrand.cloud</code>
                             </div>
-                            <p style="font-size: 0.85rem; color: var(--light-text); margin-top: 10px;">Our technical support team can assist you or handle the entire DNS setup free of charge.</p>
+                            <p class="text-slate-500 text-xs mb-0">Our technical support team can assist you or handle the entire DNS setup free of charge.</p>
                         </div>
                     </section>
 
                     <!-- Section 9: FAQs & Support -->
-                    <section id="faqs" class="docs-section reveal">
-                        <div class="docs-section-tag">❓ Support & Contact</div>
-                        <h2>9. Frequently Asked Questions</h2>
+                    <section id="faqs" class="docs-section reveal bg-white rounded-3xl p-8 md:p-10 border border-slate-200/90 shadow-sm">
+                        <div class="docs-section-tag inline-block px-3.5 py-1 rounded-full text-xs font-bold tracking-wide uppercase bg-[#f1f8e9] text-[#558b2f] mb-4">❓ Support & Contact</div>
+                        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-4 tracking-tight">9. Frequently Asked Questions</h2>
                         
-                        <div style="display: flex; flex-direction: column; gap: 16px; margin: 24px 0;">
-                            <div class="card" style="padding: 22px;">
-                                <h3 style="font-size: 1.15rem; color: var(--primary-blue);">Do I need technical skills or coding knowledge?</h3>
-                                <p style="font-size: 0.95rem;">Not at all! Galibrand is designed so that anyone who knows how to use WhatsApp can run their digital dukaan effortlessly.</p>
+                        <div class="space-y-4 mb-8">
+                            <div class="card bg-slate-50 rounded-2xl p-6 border border-slate-200/80">
+                                <h3 class="text-base font-bold text-[#558b2f] mb-1">Do I need technical skills or coding knowledge?</h3>
+                                <p class="text-slate-600 text-sm leading-relaxed mb-0">Not at all! Galibrand is designed so that anyone who knows how to use WhatsApp can run their digital dukaan effortlessly.</p>
                             </div>
-                            <div class="card" style="padding: 22px;">
-                                <h3 style="font-size: 1.15rem; color: var(--primary-blue);">Can multiple staff members log in at once?</h3>
-                                <p style="font-size: 0.95rem;">Yes, your billing counter and packing team can both have the dashboard open simultaneously on multiple devices.</p>
+                            <div class="card bg-slate-50 rounded-2xl p-6 border border-slate-200/80">
+                                <h3 class="text-base font-bold text-[#558b2f] mb-1">Can multiple staff members log in at once?</h3>
+                                <p class="text-slate-600 text-sm leading-relaxed mb-0">Yes, your billing counter and packing team can both have the dashboard open simultaneously on multiple devices.</p>
                             </div>
-                            <div class="card" style="padding: 22px;">
-                                <h3 style="font-size: 1.15rem; color: var(--primary-blue);">How fast can I get started?</h3>
-                                <p style="font-size: 0.95rem;">Most shops go live within 24 to 48 hours after providing their item list and basic shop details.</p>
+                            <div class="card bg-slate-50 rounded-2xl p-6 border border-slate-200/80">
+                                <h3 class="text-base font-bold text-[#558b2f] mb-1">How fast can I get started?</h3>
+                                <p class="text-slate-600 text-sm leading-relaxed mb-0">Most shops go live within 24 to 48 hours after providing their item list and basic shop details.</p>
                             </div>
                         </div>
 
                         <!-- Need Help Callout Banner -->
-                        <div class="cta-box" style="margin-top: 30px;">
-                            <h3>Need Personal Help or On-Site Onboarding?</h3>
-                            <p style="color: var(--light-text); max-width: 600px; margin: 0 auto 20px;">Our dedicated merchant support team is available 6 days a week to guide you over the phone or WhatsApp.</p>
-                            <div style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;">
-                                <a href="https://wa.me/919580889615?text=Hi%20Galibrand%20Support%2C%20I%20have%20a%20question%20about%20the%20docs" class="btn btn-whatsapp" target="_blank">
+                        <div class="cta-box bg-gradient-to-r from-[#f0fdf4] to-[#dcfce7] border border-[#bbf7d0] rounded-3xl p-8 md:p-10 text-center shadow-sm">
+                            <h3 class="text-2xl font-extrabold text-slate-900 mb-2">Need Personal Help or On-Site Onboarding?</h3>
+                            <p class="text-slate-600 max-w-xl mx-auto mb-6 text-sm md:text-base">Our dedicated merchant support team is available 6 days a week to guide you over the phone or WhatsApp.</p>
+                            <div class="flex flex-wrap gap-4 justify-center">
+                                <a href="https://wa.me/919580889615?text=Hi%20Galibrand%20Support%2C%20I%20have%20a%20question%20about%20the%20docs" class="btn btn-whatsapp inline-flex items-center gap-2 px-6 py-3 rounded-full font-bold text-sm text-white bg-[#25D366] hover:bg-[#128C7E] transition-all shadow-md" target="_blank">
                                     Chat on WhatsApp (+91 9580889615)
                                 </a>
-                                <a href="contact.html" class="btn btn-primary">
+                                <a href="contact.html" class="btn btn-primary inline-flex items-center justify-center px-6 py-3 rounded-full font-bold text-sm text-white bg-gradient-to-r from-[#7CB342] to-[#689f38] shadow-md hover:shadow-lg hover:scale-105 transition-all" style="color: white;">
                                     Request In-Person Demo
                                 </a>
                             </div>
