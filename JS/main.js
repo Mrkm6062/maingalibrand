@@ -77,7 +77,7 @@ async function loadPartials() {
 
     try {
         if (headerPlaceholder) {
-            const response = await fetch('/header.html?v=3.0', { cache: 'no-cache' });
+            const response = await fetch('/header.html?v=4.0', { cache: 'no-cache' });
             if (response.ok) {
                 headerPlaceholder.innerHTML = await response.text();
                 initMobileMenu();
@@ -85,7 +85,7 @@ async function loadPartials() {
             }
         }
         if (footerPlaceholder) {
-            const response = await fetch('/footer.html?v=3.0', { cache: 'no-cache' });
+            const response = await fetch('/footer.html?v=4.0', { cache: 'no-cache' });
             if (response.ok) {
                 footerPlaceholder.innerHTML = await response.text();
                 initBackToTop();
@@ -431,13 +431,10 @@ function renderPricingCards() {
 // SCROLL REVEAL ANIMATIONS
 // ========================================================
 function initScrollAnimations() {
-    if (!('IntersectionObserver' in window)) {
-        document.querySelectorAll('.reveal, [data-reveal]').forEach(el => el.classList.add('revealed'));
-        return;
-    }
-
     const revealSelector = '.reveal, [data-reveal], section .card, .section-title, .section-subtitle, .docs-section';
     const elementsToReveal = document.querySelectorAll(revealSelector);
+
+    if (elementsToReveal.length === 0) return;
 
     elementsToReveal.forEach(el => {
         if (!el.classList.contains('reveal')) {
@@ -445,9 +442,22 @@ function initScrollAnimations() {
         }
     });
 
+    // Stagger delays for grid items
+    document.querySelectorAll('.grid, .grid-3, .grid-2, .pricing-grid-4, [class*="grid-cols"]').forEach(grid => {
+        const items = grid.querySelectorAll('.reveal');
+        items.forEach((item, index) => {
+            item.style.setProperty('transition-delay', `${(index % 4) * 0.12}s`, 'important');
+        });
+    });
+
+    if (!('IntersectionObserver' in window)) {
+        elementsToReveal.forEach(el => el.classList.add('revealed'));
+        return;
+    }
+
     const observerOptions = {
         root: null,
-        rootMargin: '0px 0px -40px 0px',
+        rootMargin: '0px 0px -30px 0px',
         threshold: 0.05
     };
 
@@ -460,31 +470,38 @@ function initScrollAnimations() {
         });
     }, observerOptions);
 
+    const initialTriggerLimit = window.innerHeight * 0.45;
     elementsToReveal.forEach(el => {
         const rect = el.getBoundingClientRect();
-        if (rect.top < window.innerHeight && rect.bottom > 0) {
-            el.classList.add('revealed');
+        // If element is already in the top hero area on initial load, reveal it
+        if (rect.top < initialTriggerLimit && rect.bottom > 0) {
+            setTimeout(() => el.classList.add('revealed'), 80);
         } else {
             scrollObserver.observe(el);
         }
     });
 
-    // Stagger delays for grid items
-    document.querySelectorAll('.grid, .grid-3, .grid-2, .pricing-grid-4').forEach(grid => {
-        const items = grid.querySelectorAll('.reveal');
-        items.forEach((item, index) => {
-            item.style.transitionDelay = `${(index % 4) * 0.1}s`;
+    // Backup scroll listener for 100% reliable trigger when user scrolls
+    window.addEventListener('scroll', () => {
+        const unrevealed = document.querySelectorAll('.reveal:not(.revealed)');
+        const screenBottom = window.innerHeight;
+        unrevealed.forEach(el => {
+            const rect = el.getBoundingClientRect();
+            if (rect.top < screenBottom - 25 && rect.bottom > 0) {
+                el.classList.add('revealed');
+                scrollObserver.unobserve(el);
+            }
         });
-    });
+    }, { passive: true });
 
     window.refreshScrollAnimations = function() {
         const newElements = document.querySelectorAll('#pricing-grid .pricing-card:not(.revealed), .reveal:not(.revealed)');
         newElements.forEach((el, index) => {
             el.classList.add('reveal');
-            el.style.transitionDelay = `${(index % 4) * 0.08}s`;
+            el.style.setProperty('transition-delay', `${(index % 4) * 0.1}s`, 'important');
             const rect = el.getBoundingClientRect();
-            if (rect.top < window.innerHeight && rect.bottom > 0) {
-                el.classList.add('revealed');
+            if (rect.top < initialTriggerLimit && rect.bottom > 0) {
+                setTimeout(() => el.classList.add('revealed'), 80);
             } else {
                 scrollObserver.observe(el);
             }
