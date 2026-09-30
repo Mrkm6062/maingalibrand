@@ -7,13 +7,44 @@
     <link rel="icon" href="/public/favicon.ico" type="image/x-icon">
     <meta name="robots" content="noindex, follow">
     <link rel="canonical" href="https://www.galibrand.cloud/disclaimer.html">
-    <link rel="stylesheet" href="/css/style.css?v=2.2">
+    <!-- Google Fonts: Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            green: '#7CB342',
+                            'green-dark': '#689f38',
+                            'green-light': '#f1f8e9',
+                            orange: '#FB8C00',
+                            'orange-dark': '#ef6c00',
+                            'orange-light': '#fff3e0',
+                            dark: '#0f172a',
+                            slate: '#64748b'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'system-ui', '-apple-system', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <link rel="stylesheet" href="/css/style.css?v=3.0">
 </head>
-<body>
+<body class="bg-white text-slate-800 antialiased font-sans">
 
     <header id="header-placeholder"></header>
 
-    <main>
+    <main class="pt-[74px]">
     <section class="hero">
         <div class="container">
             <h1>Disclaimer</h1>
@@ -47,6 +78,6 @@
     </main>
 
     <footer id="footer-placeholder"></footer>
-    <script src="/js/main.js?v=2.2"></script>
+    <script src="/js/main.js?v=3.0"></script>
 </body>
 </html>

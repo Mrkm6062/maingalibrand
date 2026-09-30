@@ -25,7 +25,38 @@
     <meta name="twitter:description" content="Zero commission online ordering for Kirana and Veg shops.">
     <meta name="twitter:image" content="https://www.galibrand.cloud/images/og-image.jpg">
 
-    <link rel="stylesheet" href="/css/style.css?v=2.2">
+    <!-- Google Fonts: Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            green: '#7CB342',
+                            'green-dark': '#689f38',
+                            'green-light': '#f1f8e9',
+                            orange: '#FB8C00',
+                            'orange-dark': '#ef6c00',
+                            'orange-light': '#fff3e0',
+                            dark: '#0f172a',
+                            slate: '#64748b'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'system-ui', '-apple-system', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <link rel="stylesheet" href="/css/style.css?v=3.0">
     
     <!-- JSON-LD Schema for Organization and FAQ -->
     <script type="application/ld+json">
@@ -101,85 +132,89 @@
     }
     </script>
 </head>
-<body>
+<body class="bg-white text-slate-800 antialiased font-sans">
 
-    <!-- Navigation -->
+    <!-- Navigation Header -->
     <header id="header-placeholder"></header>
 
-    <main>
+    <main class="pt-[74px]">
     <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <div class="hero-badge">
+    <section class="hero relative overflow-hidden bg-gradient-to-b from-[#f1f8e9]/50 via-white to-white py-16 md:py-24 text-center">
+        <div class="container mx-auto px-6 max-w-[1200px]">
+            <div class="hero-badge inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#f1f8e9] text-[#558b2f] text-sm font-bold border border-[#c5e1a5] mb-6 shadow-sm">
                 <span class="pulse-dot"></span>
                 Commission-Free Online Ordering for Indian Retailers
             </div>
-            <h1>Digital Ordering for Local Shops</h1>
-            <p>Launch your own <strong>online ordering system for Kirana stores</strong>, vegetable shops, and <strong>local food nasta corners</strong>. Create your own <strong>complete ecommerce website</strong> without any third party. Take orders and deliver locally — without losing control or paying high commissions. The trusted choice for <strong>grocery online ordering in India</strong>.</p>
-            <div class="hero-buttons">
-                <a href="contact.html" class="btn btn-primary">Request Demo</a>
-                <a href="pricing.html" class="btn btn-outline">View Pricing</a>
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight leading-[1.15] mb-6 max-w-4xl mx-auto">
+                Digital Ordering for <span class="bg-clip-text text-transparent bg-gradient-to-r from-[#7CB342] to-[#FB8C00]">Local Shops</span>
+            </h1>
+            <p class="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed mb-8">
+                Launch your own <strong>online ordering system for Kirana stores</strong>, vegetable shops, and <strong>local food nasta corners</strong>. Create your own <strong>complete ecommerce website</strong> without any third party. Take orders and deliver locally — without losing control or paying high commissions. The trusted choice for <strong>grocery online ordering in India</strong>.
+            </p>
+            <div class="hero-buttons flex flex-wrap justify-center gap-4 mb-10">
+                <a href="contact.html" class="btn btn-primary inline-flex items-center justify-center px-8 py-3.5 rounded-full font-bold text-white bg-gradient-to-r from-[#7CB342] to-[#689f38] shadow-md hover:shadow-lg hover:scale-105 transition-all" style="color: white;">Request Demo</a>
+                <a href="pricing.html" class="btn btn-outline inline-flex items-center justify-center px-8 py-3.5 rounded-full font-bold text-slate-800 bg-white border border-slate-200 hover:border-[#7CB342] hover:text-[#7CB342] hover:bg-[#f1f8e9] transition-all">View Pricing</a>
             </div>
-            <div class="hero-trust-bar">
-                <span>✅ 0% Commission</span>
-                <span>⚡ 24-Hour Setup</span>
-                <span>📱 Direct WhatsApp Orders</span>
-                <span>🇮🇳 Made in India</span>
+            <div class="hero-trust-bar flex flex-wrap justify-center items-center gap-6 md:gap-10 text-sm font-semibold text-slate-600 pt-6 border-t border-slate-100 max-w-3xl mx-auto">
+                <span class="flex items-center gap-1.5">✅ 0% Commission</span>
+                <span class="flex items-center gap-1.5">⚡ 24-Hour Setup</span>
+                <span class="flex items-center gap-1.5">📱 Direct WhatsApp Orders</span>
+                <span class="flex items-center gap-1.5">🇮🇳 Made in India</span>
             </div>
         </div>
     </section>
 
     <!-- Problems Section -->
-    <section id="problems">
-        <div class="container">
-            <h2 class="section-title">Why Local Shops Struggle Online</h2>
-            <p class="section-subtitle">Managing orders on WhatsApp and phone calls is chaotic. Aggregator apps eat your margins.</p>
+    <section id="problems" class="py-20 bg-white">
+        <div class="container mx-auto px-6 max-w-[1200px]">
+            <h2 class="section-title text-3xl md:text-4xl font-extrabold text-slate-900 text-center mb-3">Why Local Shops Struggle Online</h2>
+            <p class="section-subtitle text-lg text-slate-600 text-center max-w-2xl mx-auto mb-14">Managing orders on WhatsApp and phone calls is chaotic. Aggregator apps eat your margins.</p>
             
-            <div class="grid-3">
-                <div class="card reveal">
-                    <div class="feature-icon">📉</div>
-                    <h3>High Commissions</h3>
-                    <p>Popular delivery apps take 25-30% of your order value. You do the work, they take the profit.</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="card reveal bg-white rounded-2xl p-8 border border-slate-200/90 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300">
+                    <div class="feature-icon text-4xl mb-4">📉</div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-2">High Commissions</h3>
+                    <p class="text-slate-600 leading-relaxed text-sm md:text-base">Popular delivery apps take 25-30% of your order value. You do the work, they take the profit.</p>
                 </div>
-                <div class="card reveal">
-                    <div class="feature-icon">📱</div>
-                    <h3>Phone Chaos</h3>
-                    <p>Taking orders via phone calls or messy WhatsApp chats leads to wrong items and angry customers.</p>
+                <div class="card reveal bg-white rounded-2xl p-8 border border-slate-200/90 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300">
+                    <div class="feature-icon text-4xl mb-4">📱</div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-2">Phone Chaos</h3>
+                    <p class="text-slate-600 leading-relaxed text-sm md:text-base">Taking orders via phone calls or messy WhatsApp chats leads to wrong items and angry customers.</p>
                 </div>
-                <div class="card reveal">
-                    <div class="feature-icon">🚫</div>
-                    <h3>No Digital Identity</h3>
-                    <p>Your loyal customers want to order online. If you don't have a link, they will go to a competitor.</p>
+                <div class="card reveal bg-white rounded-2xl p-8 border border-slate-200/90 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300">
+                    <div class="feature-icon text-4xl mb-4">🚫</div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-2">No Digital Identity</h3>
+                    <p class="text-slate-600 leading-relaxed text-sm md:text-base">Your loyal customers want to order online. If you don't have a link, they will go to a competitor.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Solutions Section -->
-    <section id="solutions" style="background-color: var(--bg-light);">
-        <div class="container">
-            <h2 class="section-title">The Galibrand Advantage</h2>
-            <p class="section-subtitle">We give you the technology. You keep the customers and the profit.</p>
+    <section id="solutions" class="py-20 bg-slate-50/80">
+        <div class="container mx-auto px-6 max-w-[1200px]">
+            <h2 class="section-title text-3xl md:text-4xl font-extrabold text-slate-900 text-center mb-3">The Galibrand Advantage</h2>
+            <p class="section-subtitle text-lg text-slate-600 text-center max-w-2xl mx-auto mb-14">We give you the technology. You keep the customers and the profit.</p>
             
-            <div class="grid-2">
-                <div>
-                    <div class="card reveal" style="margin-bottom: 20px;">
-                        <h3>✅ 0% Commission</h3>
-                        <p>We charge a flat monthly fee. Whether you do 10 orders or 1000 orders, your cost stays the same.</p>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6">
+                    <div class="card reveal bg-white rounded-2xl p-6 md:p-8 border border-slate-200/80 shadow-sm hover:border-[#7CB342]/40 transition-all">
+                        <h3 class="text-xl font-bold text-slate-900 mb-2 flex items-center gap-2"><span class="text-[#7CB342]">✅</span> 0% Commission</h3>
+                        <p class="text-slate-600 leading-relaxed">We charge a flat monthly fee. Whether you do 10 orders or 1000 orders, your cost stays the same.</p>
                     </div>
-                    <div class="card reveal" style="margin-bottom: 20px;">
-                        <h3>✅ Your Own Brand</h3>
-                        <p>Customers see your shop name and logo, not ours. Build loyalty with your local community.</p>
+                    <div class="card reveal bg-white rounded-2xl p-6 md:p-8 border border-slate-200/80 shadow-sm hover:border-[#FB8C00]/40 transition-all">
+                        <h3 class="text-xl font-bold text-slate-900 mb-2 flex items-center gap-2"><span class="text-[#FB8C00]">✅</span> Your Own Brand</h3>
+                        <p class="text-slate-600 leading-relaxed">Customers see your shop name and logo, not ours. Build loyalty with your local community.</p>
                     </div>
-                    <div class="card reveal">
-                        <h3>✅ Digital Khata & Logs</h3>
-                        <p>Keep track of every order, payment, and delivery in one simple dashboard.</p>
+                    <div class="card reveal bg-white rounded-2xl p-6 md:p-8 border border-slate-200/80 shadow-sm hover:border-[#7CB342]/40 transition-all">
+                        <h3 class="text-xl font-bold text-slate-900 mb-2 flex items-center gap-2"><span class="text-[#7CB342]">✅</span> Digital Khata & Logs</h3>
+                        <p class="text-slate-600 leading-relaxed">Keep track of every order, payment, and delivery in one simple dashboard.</p>
                     </div>
                 </div>
-                <div class="text-center reveal">
+                <div class="text-center reveal flex justify-center">
                     <!-- Modern Mockup Frame for App Preview -->
-                    <div class="mockup-frame">
-                        <img src="/public/apppreviewimg.webp" alt="Galibrand App Interface Preview" loading="lazy">
+                    <div class="mockup-frame max-w-[420px] rounded-3xl overflow-hidden shadow-2xl border-4 border-white transition-transform hover:scale-[1.02]">
+                        <img src="/public/apppreviewimg.webp" alt="Galibrand App Interface Preview" class="w-full h-auto block" loading="lazy">
                     </div>
                 </div>
             </div>
@@ -187,82 +222,82 @@
     </section>
 
     <!-- How It Works -->
-    <section id="how-it-works">
-        <div class="container">
-            <h2 class="section-title">How It Works</h2>
-            <p class="section-subtitle">Three simple steps to start taking online orders from your neighborhood customers.</p>
-            <div class="grid-3 text-center">
-                <div class="card reveal">
-                    <div class="step-number">1</div>
-                    <h3>Create Your Store</h3>
-                    <p>Upload your products and prices. Set your delivery areas.</p>
+    <section id="how-it-works" class="py-20 bg-white">
+        <div class="container mx-auto px-6 max-w-[1200px]">
+            <h2 class="section-title text-3xl md:text-4xl font-extrabold text-slate-900 text-center mb-3">How It Works</h2>
+            <p class="section-subtitle text-lg text-slate-600 text-center max-w-2xl mx-auto mb-14">Three simple steps to start taking online orders from your neighborhood customers.</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                <div class="card reveal bg-white rounded-2xl p-8 border border-slate-200 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all">
+                    <div class="step-number w-12 h-12 rounded-full bg-gradient-to-r from-[#7CB342] to-[#689f38] text-white font-black text-xl flex items-center justify-center mx-auto mb-5 shadow-md">1</div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-2">Create Your Store</h3>
+                    <p class="text-slate-600 leading-relaxed">Upload your products and prices. Set your delivery areas.</p>
                 </div>
-                <div class="card reveal">
-                    <div class="step-number">2</div>
-                    <h3>Share Your Link</h3>
-                    <p>Send your shop link & PWA App via WhatsApp to your customers.</p>
+                <div class="card reveal bg-white rounded-2xl p-8 border border-slate-200 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all">
+                    <div class="step-number w-12 h-12 rounded-full bg-gradient-to-r from-[#7CB342] to-[#689f38] text-white font-black text-xl flex items-center justify-center mx-auto mb-5 shadow-md">2</div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-2">Share Your Link</h3>
+                    <p class="text-slate-600 leading-relaxed">Send your shop link & PWA App via WhatsApp to your customers.</p>
                 </div>
-                <div class="card reveal">
-                    <div class="step-number">3</div>
-                    <h3>Receive Orders</h3>
-                    <p>Get orders on your dashboard, pack them, and deliver.</p>
+                <div class="card reveal bg-white rounded-2xl p-8 border border-slate-200 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all">
+                    <div class="step-number w-12 h-12 rounded-full bg-gradient-to-r from-[#7CB342] to-[#689f38] text-white font-black text-xl flex items-center justify-center mx-auto mb-5 shadow-md">3</div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-2">Receive Orders</h3>
+                    <p class="text-slate-600 leading-relaxed">Get orders on your dashboard, pack them, and deliver.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- SEO Content Section: Detailed Information for Search Engines and Users -->
-    <section id="about-galibrand" style="background-color: #fff;">
-        <div class="container">
-            <div class="card reveal" style="max-width: 960px; margin: 0 auto; line-height: 1.8; color: #444; padding: 48px 40px;">
-                <h2 class="section-title" style="margin-bottom: 30px; text-align: left;">Transform Your Local Business with Galibrand</h2>
+    <section id="about-galibrand" class="py-20 bg-slate-50/60">
+        <div class="container mx-auto px-6 max-w-[1200px]">
+            <div class="card reveal max-w-4xl mx-auto bg-white rounded-3xl p-8 md:p-14 border border-slate-200 shadow-sm leading-relaxed text-slate-700">
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-6 text-left">Transform Your Local Business with Galibrand</h2>
                 
-                <p style="margin-bottom: 20px; font-size: 1.05rem;">
+                <p class="mb-5 text-base md:text-lg">
                     In today's digital age, customers expect convenience. They want to browse products on their phones and get them delivered to their doorstep. For large supermarkets, this is easy. But for the millions of local shops in India, finding a reliable <strong>online ordering system for kirana stores</strong> has been a challenge—until now.
                 </p>
                 
-                <h3 style="color: var(--primary-blue); margin-top: 32px; font-size: 1.35rem;">The Best Veg Shop Online Order Website Solution</h3>
-                <p style="margin-bottom: 20px;">
+                <h3 class="text-[#7CB342] font-bold text-xl mt-8 mb-3">The Best Veg Shop Online Order Website Solution</h3>
+                <p class="mb-5">
                     Vegetable and fruit shops face unique challenges, such as daily price fluctuations and weight-based selling. Galibrand is designed as a specialized <strong>veg shop online order website</strong> builder. Our platform allows you to update prices in seconds every morning. You can sell by the gram, kilogram, or piece, ensuring your inventory matches exactly what you have in stock.
                 </p>
 
-                <h3 style="color: var(--primary-blue); margin-top: 32px; font-size: 1.35rem;">Why Choose a Commission-Free Online Ordering for Shops?</h3>
-                <p style="margin-bottom: 20px;">
+                <h3 class="text-[#7CB342] font-bold text-xl mt-8 mb-3">Why Choose a Commission-Free Online Ordering for Shops?</h3>
+                <p class="mb-5">
                     Most food and grocery delivery apps charge anywhere from 20% to 30% commission on every order. This eats into the thin margins of grocery retail. Galibrand offers a <strong>commission-free online ordering for shops</strong>. We believe that your hard work should result in your profit. With our flat monthly subscription, you can scale your business without worrying about rising costs.
                 </p>
 
-                <h3 style="color: var(--primary-blue); margin-top: 32px; font-size: 1.35rem;">Empowering Grocery Online Ordering in India</h3>
-                <p style="margin-bottom: 20px;">
+                <h3 class="text-[#7CB342] font-bold text-xl mt-8 mb-3">Empowering Grocery Online Ordering in India</h3>
+                <p class="mb-5">
                     Galibrand is proudly made in India, for India. We understand the nuances of the Indian retail market. From handling "Udhaar" (credit) for loyal customers to managing home delivery within specific "Mohallas" (neighborhoods), our <strong>local shop online ordering system</strong> is built to support the traditional Indian way of doing business while upgrading it with modern technology.
                 </p>
 
-                <h3 style="color: var(--primary-blue); margin-top: 32px; font-size: 1.35rem;">Apni Dukaan Online Kholiye</h3>
-                <p style="margin-bottom: 20px;">
+                <h3 class="text-[#7CB342] font-bold text-xl mt-8 mb-3">Apni Dukaan Online Kholiye</h3>
+                <p class="mb-5">
                     Kya aap apni <strong>Kirana dukaan</strong> ya <strong>Sabzi shop</strong> ko online le jana chahte hain? Galibrand ke saath digital dukaan kholna ab bahut aasaan hai. Humara online ordering system specially Indian local shops ke liye banaya gaya hai. Sabse achi baat? Hum koi commission nahi lete. Aapka customer, aapka profit. Aaj hi judiye aur apne business ko badhaiye.
                 </p>
 
-                <h3 style="color: var(--primary-blue); margin-top: 32px; font-size: 1.35rem;">Who Can Use Galibrand?</h3>
-                <ul style="list-style-type: disc; padding-left: 24px; margin-bottom: 24px;">
-                    <li style="margin-bottom: 8px;"><strong>Kirana Stores:</strong> Manage thousands of FMCG products and offer smart search to your customers.</li>
-                    <li style="margin-bottom: 8px;"><strong>Local Street Shops of Food & Beverage Nasta Corner:</strong> Showcase your Food & Beverage products and get orders from customers directly.</li>
-                    <li style="margin-bottom: 8px;"><strong>Vegetable & Fruit Vendors:</strong> Quick price updates and fresh inventory management.</li>
-                    <li style="margin-bottom: 8px;"><strong>Wholesalers & Distributors:</strong> Set Minimum Order Quantities (MOQ) and bulk pricing for B2B clients.</li>
-                    <li style="margin-bottom: 8px;"><strong>Bakeries & Sweet Shops:</strong> Showcase your fresh items with beautiful images.</li>
-                    <li style="margin-bottom: 8px;"><strong>Ecommerce Websites & Clothing Brands:</strong> Showcase your products and get orders from customers directly.</li>
+                <h3 class="text-[#7CB342] font-bold text-xl mt-8 mb-3">Who Can Use Galibrand?</h3>
+                <ul class="list-disc pl-6 space-y-2 mb-6">
+                    <li><strong>Kirana Stores:</strong> Manage thousands of FMCG products and offer smart search to your customers.</li>
+                    <li><strong>Local Street Shops of Food & Beverage Nasta Corner:</strong> Showcase your Food & Beverage products and get orders from customers directly.</li>
+                    <li><strong>Vegetable & Fruit Vendors:</strong> Quick price updates and fresh inventory management.</li>
+                    <li><strong>Wholesalers & Distributors:</strong> Set Minimum Order Quantities (MOQ) and bulk pricing for B2B clients.</li>
+                    <li><strong>Bakeries & Sweet Shops:</strong> Showcase your fresh items with beautiful images.</li>
+                    <li><strong>Ecommerce Websites & Clothing Brands:</strong> Showcase your products and get orders from customers directly.</li>
                 </ul>
                 <p>
                     Join the digital revolution today. Stop relying on chaotic phone calls and start managing your business professionally with Galibrand.
                 </p>
 
-                <h2 style="color: var(--primary-blue); margin-top: 36px; font-size: 1.5rem;">Online Ordering Solutions by City</h2>
-                <ul style="list-style-type: disc; padding-left: 24px; margin-top: 14px;">
-                  <li style="margin-bottom: 8px;"><a href="/online-ordering-kirana-shop-mumbai" style="color: var(--primary-green); font-weight: 600;">
+                <h2 class="text-xl font-bold text-[#7CB342] mt-10 mb-3">Online Ordering Solutions by City</h2>
+                <ul class="list-disc pl-6 space-y-2">
+                  <li><a href="/online-ordering-kirana-shop-mumbai" class="text-[#FB8C00] font-semibold hover:underline">
                   Online Ordering for Kirana Shops in Mumbai</a></li>
 
-                  <li style="margin-bottom: 8px;"><a href="/online-ordering-kirana-shop-delhi" style="color: var(--primary-green); font-weight: 600;">
+                  <li><a href="/online-ordering-kirana-shop-delhi" class="text-[#FB8C00] font-semibold hover:underline">
                   Online Ordering for Kirana Shops in Delhi</a></li>
 
-                  <li style="margin-bottom: 8px;"><a href="/online-ordering-system-for-small-business" style="color: var(--primary-green); font-weight: 600;">
+                  <li><a href="/online-ordering-system-for-small-business" class="text-[#FB8C00] font-semibold hover:underline">
                   Online Ordering System for Small Business</a></li>
                 </ul>
             </div>
@@ -270,50 +305,50 @@
     </section>
 
     <!-- Testimonials -->
-    <section style="background: linear-gradient(135deg, #7CB342 0%, #558b2f 100%); color: white;">
-        <div class="container">
-            <h2 class="section-title" style="color: white;">Trusted by Local Businesses</h2>
-            <p class="section-subtitle" style="color: rgba(255, 255, 255, 0.85);">Read what actual shop owners say about taking their business online with Galibrand.</p>
-            <div class="grid-2">
-                <div class="card reveal" style="background: rgba(255,255,255,0.12); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.25); color: white;">
-                    <div style="font-size: 2rem; color: #fed7aa; margin-bottom: 10px;">“</div>
-                    <p style="color: #f1f5f9; font-style: italic; font-size: 1.05rem; line-height: 1.7;">"Before Galibrand, i sell only offline now Online order coming from my nearby villag directly to the tablet. My teams are happier too."</p>
-                    <h4 style="margin-top: 20px; font-weight: 700; color: #ffffff;">— Ravindra Maurya - Maurya Nasta Corner</h4>
+    <section class="py-20 bg-gradient-to-br from-[#7CB342] via-[#689f38] to-[#558b2f] text-white">
+        <div class="container mx-auto px-6 max-w-[1200px]">
+            <h2 class="section-title text-3xl md:text-4xl font-extrabold text-white text-center mb-3">Trusted by Local Businesses</h2>
+            <p class="section-subtitle text-lg text-white/80 text-center max-w-2xl mx-auto mb-14">Read what actual shop owners say about taking their business online with Galibrand.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="card reveal bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-8 shadow-lg hover:bg-white/15 transition-all text-white">
+                    <div class="text-3xl text-orange-200 mb-3">“</div>
+                    <p class="text-slate-100 italic text-base md:text-lg leading-relaxed">"Before Galibrand, i sell only offline now Online order coming from my nearby villag directly to the tablet. My teams are happier too."</p>
+                    <h4 class="mt-6 font-bold text-white tracking-wide">— Ravindra Maurya - Maurya Nasta Corner</h4>
                 </div>
-                <div class="card reveal" style="background: rgba(255,255,255,0.12); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.25); color: white;">
-                    <div style="font-size: 2rem; color: #fed7aa; margin-bottom: 10px;">“</div>
-                    <p style="color: #f1f5f9; font-style: italic; font-size: 1.05rem; line-height: 1.7;">"The best part is the flat fee. I saved ₹15,000 last month compared to other apps. Highly recommended for Clothing Brand & Vegetables Shop."</p>
-                    <h4 style="margin-top: 20px; font-weight: 700; color: #ffffff;">— Anand Kumar, Samriddhi Shop</h4>
+                <div class="card reveal bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-8 shadow-lg hover:bg-white/15 transition-all text-white">
+                    <div class="text-3xl text-orange-200 mb-3">“</div>
+                    <p class="text-slate-100 italic text-base md:text-lg leading-relaxed">"The best part is the flat fee. I saved ₹15,000 last month compared to other apps. Highly recommended for Clothing Brand & Vegetables Shop."</p>
+                    <h4 class="mt-6 font-bold text-white tracking-wide">— Anand Kumar, Samriddhi Shop</h4>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- FAQ Section -->
-    <section id="faq" style="background-color: var(--bg-light);">
-        <div class="container">
-            <h2 class="section-title">Frequently Asked Questions</h2>
-            <p class="section-subtitle">Common questions from shop owners who want to get their store online.</p>
-            <div style="max-width: 840px; margin: 0 auto; display: flex; flex-direction: column; gap: 18px;">
-                <div class="card reveal">
-                    <h3 style="font-size: 1.2rem; margin-bottom: 10px; color: var(--primary-blue-dark);">What is Galibrand?</h3>
-                    <p>Galibrand is a technology platform that helps local shops create their own online ordering website and app without any coding knowledge.</p>
+    <section id="faq" class="py-20 bg-slate-50/80">
+        <div class="container mx-auto px-6 max-w-[1200px]">
+            <h2 class="section-title text-3xl md:text-4xl font-extrabold text-slate-900 text-center mb-3">Frequently Asked Questions</h2>
+            <p class="section-subtitle text-lg text-slate-600 text-center max-w-2xl mx-auto mb-14">Common questions from shop owners who want to get their store online.</p>
+            <div class="max-w-3xl mx-auto space-y-4">
+                <div class="card reveal bg-white rounded-2xl p-6 md:p-8 border border-slate-200 shadow-sm hover:border-[#7CB342]/40 transition-all">
+                    <h3 class="text-lg font-bold text-[#558b2f] mb-2">What is Galibrand?</h3>
+                    <p class="text-slate-600 leading-relaxed">Galibrand is a technology platform that helps local shops create their own online ordering website and app without any coding knowledge.</p>
                 </div>
-                <div class="card reveal">
-                    <h3 style="font-size: 1.2rem; margin-bottom: 10px; color: var(--primary-blue-dark);">Is there a commission per order?</h3>
-                    <p>No. We charge zero commission. You only pay a small monthly subscription fee.</p>
+                <div class="card reveal bg-white rounded-2xl p-6 md:p-8 border border-slate-200 shadow-sm hover:border-[#7CB342]/40 transition-all">
+                    <h3 class="text-lg font-bold text-[#558b2f] mb-2">Is there a commission per order?</h3>
+                    <p class="text-slate-600 leading-relaxed">No. We charge zero commission. You only pay a small monthly subscription fee.</p>
                 </div>
-                <div class="card reveal">
-                    <h3 style="font-size: 1.2rem; margin-bottom: 10px; color: var(--primary-blue-dark);">Do I need a computer?</h3>
-                    <p>No. You can manage your entire shop, inventory, and orders from a smartphone or tablet.</p>
+                <div class="card reveal bg-white rounded-2xl p-6 md:p-8 border border-slate-200 shadow-sm hover:border-[#7CB342]/40 transition-all">
+                    <h3 class="text-lg font-bold text-[#558b2f] mb-2">Do I need a computer?</h3>
+                    <p class="text-slate-600 leading-relaxed">No. You can manage your entire shop, inventory, and orders from a smartphone or tablet.</p>
                 </div>
-                <div class="card reveal">
-                    <h3 style="font-size: 1.2rem; margin-bottom: 10px; color: var(--primary-blue-dark);">How do I get paid?</h3>
-                    <p>You can accept Cash on Delivery (COD) or use your own UPI QR codes. We do not touch your money.</p>
+                <div class="card reveal bg-white rounded-2xl p-6 md:p-8 border border-slate-200 shadow-sm hover:border-[#7CB342]/40 transition-all">
+                    <h3 class="text-lg font-bold text-[#558b2f] mb-2">How do I get paid?</h3>
+                    <p class="text-slate-600 leading-relaxed">You can accept Cash on Delivery (COD) or use your own UPI QR codes. We do not touch your money.</p>
                 </div>
-                <div class="card reveal">
-                    <h3 style="font-size: 1.2rem; margin-bottom: 10px; color: var(--primary-blue-dark);">Can I use my own domain name?</h3>
-                    <p>Yes, with our Business and Enterprise plans, you can connect your own custom domain (e.g., www.yourshopname.com).</p>
+                <div class="card reveal bg-white rounded-2xl p-6 md:p-8 border border-slate-200 shadow-sm hover:border-[#7CB342]/40 transition-all">
+                    <h3 class="text-lg font-bold text-[#558b2f] mb-2">Can I use my own domain name?</h3>
+                    <p class="text-slate-600 leading-relaxed">Yes, with our Business and Enterprise plans, you can connect your own custom domain (e.g., www.yourshopname.com).</p>
                 </div>
             </div>
         </div>
@@ -323,6 +358,6 @@
     <!-- Footer -->
     <footer id="footer-placeholder"></footer>
 
-    <script src="/js/main.js?v=2.2"></script>
+    <script src="/js/main.js?v=3.0"></script>
 </body>
 </html>

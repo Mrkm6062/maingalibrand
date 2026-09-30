@@ -16,23 +16,59 @@
     <meta property="og:description" content="Simple monthly subscriptions. No hidden fees. Keep 100% of your profits.">
     <meta property="og:url" content="https://www.galibrand.cloud/pricing">
 
-    <link rel="stylesheet" href="/css/style.css?v=2.2">
+    <!-- Google Fonts: Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            green: '#7CB342',
+                            'green-dark': '#689f38',
+                            'green-light': '#f1f8e9',
+                            orange: '#FB8C00',
+                            'orange-dark': '#ef6c00',
+                            'orange-light': '#fff3e0',
+                            dark: '#0f172a',
+                            slate: '#64748b'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'system-ui', '-apple-system', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <link rel="stylesheet" href="/css/style.css?v=3.0">
 </head>
-<body>
+<body class="bg-white text-slate-800 antialiased font-sans">
 
     <!-- Navigation -->
     <header id="header-placeholder"></header>
 
-    <main>
-    <section class="hero">
-        <div class="container">
-            <div class="hero-badge">
+    <main class="pt-[74px]">
+    <!-- Hero Section -->
+    <section class="hero relative overflow-hidden bg-gradient-to-b from-[#f1f8e9]/50 via-white to-white py-16 md:py-24 text-center">
+        <div class="container mx-auto px-6 max-w-[1200px]">
+            <div class="hero-badge inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#f1f8e9] text-[#558b2f] text-sm font-bold border border-[#c5e1a5] mb-6 shadow-sm">
                 <span class="pulse-dot"></span>
                 100% Commission-Free Pricing
             </div>
-            <h1>Simple, Transparent Pricing</h1>
-            <p>No hidden commissions. No per-order fees. Just a flat monthly subscription.</p>
-            <div class="hero-trust-bar">
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight leading-[1.15] mb-6 max-w-4xl mx-auto">
+                Simple, Transparent Pricing
+            </h1>
+            <p class="text-lg md:text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed mb-8">
+                No hidden commissions. No per-order fees. Just a flat monthly subscription.
+            </p>
+            <div class="hero-trust-bar flex flex-wrap justify-center items-center gap-6 md:gap-10 text-sm font-semibold text-slate-600 pt-6 border-t border-slate-100 max-w-3xl mx-auto">
                 <span>💰 Keep 100% Profits</span>
                 <span>⚡ Instant Setup</span>
                 <span>❌ No Setup Fees</span>
@@ -41,37 +77,39 @@
         </div>
     </section>
 
-    <section>
-        <div class="container">
-            <div class="billing-toggle-container reveal">
-                <div class="billing-toggle-wrapper" id="billing-toggle-wrapper">
+    <!-- Pricing Cards Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-6 max-w-[1200px]">
+            <div class="billing-toggle-container flex justify-center mb-10 reveal">
+                <div class="billing-toggle-wrapper inline-flex bg-slate-100 p-1.5 rounded-full gap-1 border border-slate-200" id="billing-toggle-wrapper">
                     <!-- Billing duration options will be dynamically loaded based on API response -->
                 </div>
             </div>
 
-            <div class="grid-3 pricing-grid-4" id="pricing-grid">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8" id="pricing-grid">
                 <!-- Pricing plans will be loaded here by JavaScript -->
-                <p style="text-align: center; grid-column: 1 / -1; color: var(--light-text); padding: 40px 0;">Loading pricing plans...</p>
+                <p class="text-center col-span-full text-slate-500 py-16 text-lg font-medium">Loading pricing plans...</p>
             </div>
         </div>
     </section>
 
-    <section style="background-color: var(--bg-light);">
-        <div class="container">
-            <h2 class="section-title">Frequently Asked Questions</h2>
-            <p class="section-subtitle">Everything you need to know about our plans and billing.</p>
-            <div style="max-width: 820px; margin: 0 auto; display: flex; flex-direction: column; gap: 16px;">
-                <div class="card reveal" style="padding: 24px 28px;">
-                    <h4 style="color: var(--primary-blue-dark); font-size: 1.15rem; margin-bottom: 8px;">Do I need a computer?</h4>
-                    <p style="margin-bottom: 0;">No! You can manage your entire shop from a smartphone or tablet.</p>
+    <!-- FAQ Section -->
+    <section class="py-20 bg-slate-50/80">
+        <div class="container mx-auto px-6 max-w-[1200px]">
+            <h2 class="section-title text-3xl md:text-4xl font-extrabold text-slate-900 text-center mb-3">Frequently Asked Questions</h2>
+            <p class="section-subtitle text-lg text-slate-600 text-center max-w-2xl mx-auto mb-14">Everything you need to know about our plans and billing.</p>
+            <div class="max-w-3xl mx-auto space-y-4">
+                <div class="card reveal bg-white rounded-2xl p-6 md:p-8 border border-slate-200 shadow-sm hover:border-[#7CB342]/40 transition-all">
+                    <h4 class="text-lg font-bold text-[#558b2f] mb-2">Do I need a computer?</h4>
+                    <p class="text-slate-600 leading-relaxed mb-0">No! You can manage your entire shop from a smartphone or tablet.</p>
                 </div>
-                <div class="card reveal" style="padding: 24px 28px;">
-                    <h4 style="color: var(--primary-blue-dark); font-size: 1.15rem; margin-bottom: 8px;">Is there a setup fee?</h4>
-                    <p style="margin-bottom: 0;">No setup fee for Starter. We help you upload your menu for free.</p>
+                <div class="card reveal bg-white rounded-2xl p-6 md:p-8 border border-slate-200 shadow-sm hover:border-[#7CB342]/40 transition-all">
+                    <h4 class="text-lg font-bold text-[#558b2f] mb-2">Is there a setup fee?</h4>
+                    <p class="text-slate-600 leading-relaxed mb-0">No setup fee for Starter. We help you upload your menu for free.</p>
                 </div>
-                <div class="card reveal" style="padding: 24px 28px;">
-                    <h4 style="color: var(--primary-blue-dark); font-size: 1.15rem; margin-bottom: 8px;">Can I cancel anytime?</h4>
-                    <p style="margin-bottom: 0;">Yes, subscriptions are month-to-month. You can stop whenever you want.</p>
+                <div class="card reveal bg-white rounded-2xl p-6 md:p-8 border border-slate-200 shadow-sm hover:border-[#7CB342]/40 transition-all">
+                    <h4 class="text-lg font-bold text-[#558b2f] mb-2">Can I cancel anytime?</h4>
+                    <p class="text-slate-600 leading-relaxed mb-0">Yes, subscriptions are month-to-month. You can stop whenever you want.</p>
                 </div>
             </div>
         </div>
@@ -81,6 +119,6 @@
     <!-- Footer -->
     <footer id="footer-placeholder"></footer>
 
-    <script src="/js/main.js?v=2.2"></script>
+    <script src="/js/main.js?v=3.0"></script>
 </body>
 </html>
