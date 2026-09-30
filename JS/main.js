@@ -5,7 +5,6 @@ function initMobileMenu() {
     if (hamburger && navLinks) {
         hamburger.addEventListener('click', () => {
             navLinks.classList.toggle('active');
-            // Change icon from hamburger to X
             if (navLinks.classList.contains('active')) {
                 hamburger.textContent = '✕';
             } else {
@@ -13,7 +12,6 @@ function initMobileMenu() {
             }
         });
 
-        // Close mobile menu when clicking outside
         document.addEventListener('click', (e) => {
             if (navLinks.classList.contains('active') && !navLinks.contains(e.target) && !hamburger.contains(e.target)) {
                 navLinks.classList.remove('active');
@@ -33,10 +31,8 @@ function setActiveNavLink() {
     navLinks.forEach(link => {
         const linkPath = link.getAttribute('href');
         if (!linkPath) return;
-        // Normalize link path for comparison
         const cleanLinkPath = linkPath.endsWith('/index.html') ? linkPath.substring(0, linkPath.length - 10) : linkPath.replace('.html', '');
         
-        // Root path special case
         if (currentPath === '/' && (cleanLinkPath === '' || cleanLinkPath === '/')) {
              bestMatch = link;
              return;
@@ -52,6 +48,8 @@ function setActiveNavLink() {
 
     if (bestMatch) {
         bestMatch.classList.add('active');
+        bestMatch.style.color = '#7CB342';
+        bestMatch.style.backgroundColor = '#f1f8e9';
     }
 }
 
@@ -60,7 +58,6 @@ function initBackToTop() {
 
     if (backToTopBtn) {
         window.addEventListener('scroll', () => {
-            // Show button after user scrolls down 300px
             if (window.scrollY > 300) {
                 backToTopBtn.classList.add('show');
             } else {
@@ -80,8 +77,7 @@ async function loadPartials() {
 
     try {
         if (headerPlaceholder) {
-            // Cache-busting query parameter to guarantee fresh partials on VPS
-            const response = await fetch('/header.html?v=2.2', { cache: 'no-cache' });
+            const response = await fetch('/header.html?v=3.0', { cache: 'no-cache' });
             if (response.ok) {
                 headerPlaceholder.innerHTML = await response.text();
                 initMobileMenu();
@@ -89,7 +85,7 @@ async function loadPartials() {
             }
         }
         if (footerPlaceholder) {
-            const response = await fetch('/footer.html?v=2.2', { cache: 'no-cache' });
+            const response = await fetch('/footer.html?v=3.0', { cache: 'no-cache' });
             if (response.ok) {
                 footerPlaceholder.innerHTML = await response.text();
                 initBackToTop();
@@ -197,15 +193,11 @@ let selectedDuration = 1;
 
 async function loadPricingPlans() {
     const pricingGrid = document.getElementById('pricing-grid');
-    if (!pricingGrid) {
-        return; // Not on the pricing page
-    }
+    if (!pricingGrid) return;
 
     try {
         const response = await fetch('https://api.galibrand.cloud/api/plans');
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
+        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
         currentPricingPlans = await response.json();
     } catch (error) {
         console.warn('Could not fetch plans online, using backend response data:', error);
@@ -220,8 +212,7 @@ function renderBillingToggle(plans) {
     const wrapper = document.getElementById('billing-toggle-wrapper');
     if (!wrapper) return;
 
-    // Collect all unique durationMonths across all returned plans
-    const durationMap = new Map(); // durationMonths -> max discountValue (%)
+    const durationMap = new Map();
 
     plans.forEach(plan => {
         if (Array.isArray(plan.billing)) {
@@ -251,9 +242,7 @@ function renderBillingToggle(plans) {
         if (container) container.style.display = 'flex';
     }
 
-    // Sort durations ascending (e.g. 1, 6, 12)
     const sortedDurations = Array.from(durationMap.keys()).sort((a, b) => a - b);
-
     if (!sortedDurations.includes(selectedDuration)) {
         selectedDuration = sortedDurations[0];
     }
@@ -262,17 +251,21 @@ function renderBillingToggle(plans) {
     sortedDurations.forEach(dur => {
         const maxDiscount = durationMap.get(dur);
         const btn = document.createElement('button');
-        btn.className = `billing-toggle-btn ${dur === selectedDuration ? 'active' : ''}`;
+        btn.className = `billing-toggle-btn px-5 py-2.5 rounded-full text-sm font-semibold transition-all inline-flex items-center gap-2 cursor-pointer ${dur === selectedDuration ? 'active bg-white text-[#558b2f] shadow-sm' : 'text-slate-600 hover:text-slate-900'}`;
         btn.setAttribute('data-duration', dur);
 
         const labelText = dur === 1 ? '1 Month' : `${dur} Months`;
-        const badgeHTML = maxDiscount > 0 ? `<span class="discount-badge">Save up to ${maxDiscount}%</span>` : '';
+        const badgeHTML = maxDiscount > 0 ? `<span class="discount-badge bg-gradient-to-r from-[#FB8C00] to-[#ef6c00] text-white text-xs px-2.5 py-0.5 rounded-full font-bold">Save up to ${maxDiscount}%</span>` : '';
 
         btn.innerHTML = `${labelText} ${badgeHTML}`;
 
         btn.addEventListener('click', () => {
-            wrapper.querySelectorAll('.billing-toggle-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
+            wrapper.querySelectorAll('.billing-toggle-btn').forEach(b => {
+                b.classList.remove('active', 'bg-white', 'text-[#558b2f]', 'shadow-sm');
+                b.classList.add('text-slate-600');
+            });
+            btn.classList.add('active', 'bg-white', 'text-[#558b2f]', 'shadow-sm');
+            btn.classList.remove('text-slate-600');
             selectedDuration = dur;
             renderPricingCards();
         });
@@ -283,7 +276,6 @@ function renderBillingToggle(plans) {
 
 function formatLimitKey(key, value) {
     if (value === null || value === undefined) return null;
-    
     if (key === 'maxProducts') {
         const num = typeof value === 'number' ? new Intl.NumberFormat('en-IN').format(value) : value;
         return `Up to ${num} Products`;
@@ -300,7 +292,6 @@ function formatLimitKey(key, value) {
     if (key === 'storeLimit') {
         return value === 1 ? '1 Store Limit' : `Up to ${value} Stores`;
     }
-    
     const titleCase = key.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase());
     return `${titleCase}: ${value}`;
 }
@@ -308,41 +299,22 @@ function formatLimitKey(key, value) {
 function getPlanFeatures(plan) {
     const featureItems = [];
 
-    // Parse limits dynamically
     if (plan.limits && typeof plan.limits === 'object') {
         for (const [key, val] of Object.entries(plan.limits)) {
             const formatted = formatLimitKey(key, val);
-            if (formatted) {
-                featureItems.push(`<li><span class="limit-badge">${formatted}</span></li>`);
-            }
+            if (formatted) featureItems.push(`<li><span class="font-bold text-slate-900">${formatted}</span></li>`);
         }
     }
 
-    // Parse features dynamically
     if (Array.isArray(plan.features)) {
         plan.features.forEach(f => {
             if (typeof f === 'string') {
-                if (!featureItems.some(item => item.includes(f))) {
-                    featureItems.push(`<li>${f}</li>`);
-                }
+                if (!featureItems.some(item => item.includes(f))) featureItems.push(`<li>${f}</li>`);
             } else if (f && typeof f === 'object') {
                 const name = f.name || (f.feature && f.feature.name);
-                if (name && !featureItems.some(item => item.includes(name))) {
-                    featureItems.push(`<li>${name}</li>`);
-                }
+                if (name && !featureItems.some(item => item.includes(name))) featureItems.push(`<li>${name}</li>`);
             }
         });
-    } else if (plan.features && typeof plan.features === 'object') {
-        for (const [key, val] of Object.entries(plan.features)) {
-            if (val) {
-                if (typeof val === 'string') {
-                    featureItems.push(`<li>${val}</li>`);
-                } else if (val === true) {
-                    const titleCase = key.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase());
-                    featureItems.push(`<li>${titleCase}</li>`);
-                }
-            }
-        }
     }
 
     return featureItems.length > 0 ? featureItems.join('') : '<li>Standard Features</li>';
@@ -355,11 +327,10 @@ function renderPricingCards() {
     pricingGrid.innerHTML = '';
 
     if (!currentPricingPlans || currentPricingPlans.length === 0) {
-        pricingGrid.innerHTML = '<p style="text-align: center; grid-column: 1 / -1;">No pricing plans available at the moment.</p>';
+        pricingGrid.innerHTML = '<p class="text-center col-span-full text-slate-500 py-10">No pricing plans available at the moment.</p>';
         return;
     }
 
-    // Sort plans by price (cheapest first)
     currentPricingPlans.sort((a, b) => {
         const priceA = typeof a.price === 'number' ? a.price : Infinity;
         const priceB = typeof b.price === 'number' ? b.price : Infinity;
@@ -368,8 +339,7 @@ function renderPricingCards() {
 
     currentPricingPlans.forEach((plan, cardIndex) => {
         const card = document.createElement('div');
-        // Marked with both reveal and revealed so dynamic cards are always visible immediately
-        card.className = 'card pricing-card reveal revealed';
+        card.className = 'pricing-card reveal';
         card.style.transitionDelay = `${(cardIndex % 4) * 0.08}s`;
 
         const isPopular = Boolean(plan.popular || plan.is_popular || plan.name === 'Pro');
@@ -404,7 +374,7 @@ function renderPricingCards() {
         }
 
         const formattedMonthlyPrice = typeof monthlyPrice === 'number' && !isNaN(monthlyPrice)
-            ? `₹${new Intl.NumberFormat('en-IN').format(monthlyPrice)}<span>/month</span>`
+            ? `₹${new Intl.NumberFormat('en-IN').format(monthlyPrice)}<span class="text-base font-normal text-slate-500">/month</span>`
             : `${monthlyPrice}`;
 
         const formattedOriginalPrice = typeof originalPrice === 'number' && !isNaN(originalPrice)
@@ -417,7 +387,7 @@ function renderPricingCards() {
 
         if (discountPercent > 0) {
             priceHTML = `<span class="price-original">${formattedOriginalPrice}</span>${formattedMonthlyPrice}`;
-            savingsBadge = `<div class="badge-savings">SAVE ${discountPercent}%</div>`;
+            savingsBadge = `<div class="badge-savings">${discountPercent}% SAVINGS</div>`;
             const totalPrice = monthlyPrice * durationMonths;
             const formattedTotal = new Intl.NumberFormat('en-IN').format(totalPrice);
             billingNoteText = `Billed ₹${formattedTotal} for ${durationMonths} month${durationMonths > 1 ? 's' : ''}`;
@@ -434,33 +404,39 @@ function renderPricingCards() {
 
         const featuresHTML = getPlanFeatures(plan);
         const buttonText = plan.buttonText || (plan.price === 'Custom' ? 'Contact Sales' : `Choose ${plan.name}`);
-        const buttonClass = isPopular ? 'btn btn-secondary' : 'btn btn-outline';
-        const descriptionHTML = plan.description ? `<p>${plan.description}</p>` : '';
+        const buttonClass = isPopular 
+            ? 'btn inline-flex items-center justify-center w-full py-3 px-6 rounded-full font-bold text-white bg-gradient-to-r from-[#FB8C00] to-[#ef6c00] shadow-md hover:shadow-lg hover:scale-[1.02] transition-all'
+            : 'btn inline-flex items-center justify-center w-full py-3 px-6 rounded-full font-bold text-[#558b2f] border-2 border-[#7CB342] hover:bg-[#7CB342] hover:text-white transition-all';
+        const descriptionHTML = plan.description ? `<p class="text-sm text-slate-500 mb-2">${plan.description}</p>` : '';
 
         card.innerHTML = `
             ${popularBadge}
             ${savingsBadge}
-            <h3>${plan.name}</h3>
+            <h3 class="text-xl font-extrabold text-slate-900 mb-1">${plan.name}</h3>
             ${descriptionHTML}
-            <div class="price price-box">${priceHTML}</div>
+            <div class="price">${priceHTML}</div>
             <div class="billing-note">${billingNoteText}</div>
             <ul class="features-list">${featuresHTML}</ul>
-            <a href="contact.html?plan=${encodeURIComponent(plan.name)}&duration=${durationMonths}" class="${buttonClass}" style="width: 100%">${buttonText}</a>
+            <a href="contact.html?plan=${encodeURIComponent(plan.name)}&duration=${durationMonths}" class="${buttonClass}">${buttonText}</a>
         `;
         pricingGrid.appendChild(card);
     });
+
+    if (typeof window.refreshScrollAnimations === 'function') {
+        window.refreshScrollAnimations();
+    }
 }
 
 // ========================================================
-// SCROLL REVEAL ANIMATIONS (Fail-safe architecture)
+// SCROLL REVEAL ANIMATIONS
 // ========================================================
 function initScrollAnimations() {
     if (!('IntersectionObserver' in window)) {
-        // Observer not supported: elements remain visible by default
+        document.querySelectorAll('.reveal, [data-reveal]').forEach(el => el.classList.add('revealed'));
         return;
     }
 
-    const revealSelector = '.reveal, [data-reveal], section .card, section .grid-3 > *, section .grid-2 > *, .section-title, .section-subtitle, .docs-section, .docs-step, .faq-item, .hero-buttons, .highlight-box, .cta-box';
+    const revealSelector = '.reveal, [data-reveal], section .card, .section-title, .section-subtitle, .docs-section';
     const elementsToReveal = document.querySelectorAll(revealSelector);
 
     elementsToReveal.forEach(el => {
@@ -471,7 +447,7 @@ function initScrollAnimations() {
 
     const observerOptions = {
         root: null,
-        rootMargin: '0px 0px -30px 0px',
+        rootMargin: '0px 0px -40px 0px',
         threshold: 0.05
     };
 
@@ -484,7 +460,6 @@ function initScrollAnimations() {
         });
     }, observerOptions);
 
-    // Initial check: if already in initial viewport, reveal immediately
     elementsToReveal.forEach(el => {
         const rect = el.getBoundingClientRect();
         if (rect.top < window.innerHeight && rect.bottom > 0) {
@@ -494,16 +469,27 @@ function initScrollAnimations() {
         }
     });
 
-    // Stagger delays for grid children
-    document.querySelectorAll('.grid-3, .grid-2, .pricing-grid-4').forEach(grid => {
+    // Stagger delays for grid items
+    document.querySelectorAll('.grid, .grid-3, .grid-2, .pricing-grid-4').forEach(grid => {
         const items = grid.querySelectorAll('.reveal');
         items.forEach((item, index) => {
-            item.style.transitionDelay = `${(index % 3) * 0.1}s`;
+            item.style.transitionDelay = `${(index % 4) * 0.1}s`;
         });
     });
 
-    // Mark system as ready for animation
-    document.documentElement.classList.add('sr-ready');
+    window.refreshScrollAnimations = function() {
+        const newElements = document.querySelectorAll('#pricing-grid .pricing-card:not(.revealed), .reveal:not(.revealed)');
+        newElements.forEach((el, index) => {
+            el.classList.add('reveal');
+            el.style.transitionDelay = `${(index % 4) * 0.08}s`;
+            const rect = el.getBoundingClientRect();
+            if (rect.top < window.innerHeight && rect.bottom > 0) {
+                el.classList.add('revealed');
+            } else {
+                scrollObserver.observe(el);
+            }
+        });
+    };
 }
 
 // ========================================================
@@ -514,7 +500,6 @@ function initDocsPage() {
     const docSections = document.querySelectorAll('.docs-section');
     const sidebarLinks = document.querySelectorAll('.docs-nav-item a');
 
-    // Live search/filter
     if (searchInput && docSections.length > 0) {
         searchInput.addEventListener('input', (e) => {
             const query = e.target.value.toLowerCase().trim();
@@ -529,7 +514,6 @@ function initDocsPage() {
         });
     }
 
-    // Active sidebar link on scroll
     if (sidebarLinks.length > 0 && docSections.length > 0 && 'IntersectionObserver' in window) {
         const sectionObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -538,8 +522,12 @@ function initDocsPage() {
                     sidebarLinks.forEach(link => {
                         if (link.getAttribute('href') === `#${id}`) {
                             link.classList.add('active');
+                            link.style.color = '#7CB342';
+                            link.style.backgroundColor = '#f1f8e9';
                         } else {
                             link.classList.remove('active');
+                            link.style.color = '';
+                            link.style.backgroundColor = '';
                         }
                     });
                 }
@@ -551,7 +539,6 @@ function initDocsPage() {
         docSections.forEach(section => sectionObserver.observe(section));
     }
 
-    // Copy to clipboard for code snippets
     document.querySelectorAll('.docs-copy-btn').forEach(btn => {
         btn.addEventListener('click', () => {
             const codeEl = btn.closest('.docs-code-snippet');
@@ -577,7 +564,6 @@ document.addEventListener('DOMContentLoaded', () => {
     initScrollAnimations();
     initDocsPage();
 
-    // --- Smooth Scroll for Anchor Links ---
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             const targetId = this.getAttribute('href');
@@ -586,10 +572,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const targetElement = document.querySelector(targetId);
             if (targetElement) {
                 e.preventDefault();
-                targetElement.scrollIntoView({
-                    behavior: 'smooth'
-                });
-                // Close mobile menu if open
+                targetElement.scrollIntoView({ behavior: 'smooth' });
                 const navLinks = document.querySelector('.nav-links');
                 const hamburger = document.querySelector('.hamburger');
                 if (navLinks && navLinks.classList.contains('active')) {
@@ -600,12 +583,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // --- Display Selected Plan ---
     const planNotification = document.getElementById('plan-notification');
     const selectedPlanName = document.getElementById('selected-plan-name');
     const planSelect = document.getElementById('plan-select');
 
-    // Get URL params (available to entire scope)
     const urlParams = new URLSearchParams(window.location.search);
     const planFromUrl = urlParams.get('plan');
 
@@ -618,29 +599,23 @@ document.addEventListener('DOMContentLoaded', () => {
         planSelect.value = planFromUrl;
     }
 
-    // --- Contact Form Validation ---
     const contactForm = document.getElementById('contactForm');
-
     if (contactForm) {
         contactForm.addEventListener('submit', (e) => {
             e.preventDefault();
             let isValid = true;
 
-            // Get fields
             const name = document.getElementById('name');
             const phone = document.getElementById('phone');
             const shopname = document.getElementById('shopname');
             
-            // Reset errors
             document.querySelectorAll('.error-msg').forEach(el => el.style.display = 'none');
 
-            // Validate Name
             if (name.value.trim().length < 2) {
                 showError(name, 'Please enter a valid name.');
                 isValid = false;
             }
 
-            // Validate Phone (Basic Indian 10 digit check)
             const phoneRegex = /^[6-9]\d{9}$/;
             if (!phoneRegex.test(phone.value.trim())) {
                 showError(phone, 'Please enter a valid 10-digit mobile number.');
@@ -648,15 +623,12 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             if (isValid) {
-                // API Call to Backend
                 const submitBtn = contactForm.querySelector('button');
                 const originalText = submitBtn.textContent;
                 submitBtn.textContent = 'Sending...';
                 submitBtn.disabled = true;
 
-                // Get selected plan from dropdown
                 const selectedPlan = planSelect ? planSelect.value : 'General Inquiry';
-
                 const payload = {
                     name: name.value.trim(),
                     phone: phone.value.trim(),

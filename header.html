@@ -1,15 +1,18 @@
-<nav role="navigation">
-    <div class="container navbar">
-        <a href="/index.html" class="logo"><img class="logo-icon" src="/public/Main.png" alt="Galibrand" style="height: 50px;" fetchpriority="high"><span class="logo-text"><img src="/public/Name.png" alt="NameLOGO" style="height: 50px" fetchpriority="high"></span></a>
-        <div class="hamburger">☰</div>
-        <ul class="nav-links">
-            <li><a href="/index.html">Home</a></li>
-            <li><a href="/products.html">Products</a></li>
-            <li><a href="/pricing.html">Pricing</a></li>
-            <li><a href="/docs.html">Docs</a></li>
-            <li><a href="/blog.html">Blog</a></li>
-            <li><a href="/contact.html">Contact</a></li>
-            <li><a href="https://dashboard.galibrand.cloud" class="btn btn-primary" style="color: white;">Get Started</a></li>
+<nav role="navigation" class="w-full">
+    <div class="container navbar flex justify-between items-center h-[74px] px-6 max-w-[1200px] mx-auto">
+        <a href="/index.html" class="logo flex items-center transition-transform hover:scale-[1.02]">
+            <img class="logo-icon hidden" src="/public/Main.png" alt="Galibrand" style="height: 48px;" fetchpriority="high">
+            <span class="logo-text"><img src="/public/Name.png" alt="NameLOGO" style="height: 48px" fetchpriority="high"></span>
+        </a>
+        <div class="hamburger md:hidden cursor-pointer text-2xl text-slate-800 p-2 rounded-lg hover:bg-slate-100 select-none">☰</div>
+        <ul class="nav-links flex gap-2 md:gap-3 items-center">
+            <li><a href="/index.html" class="px-4 py-2 rounded-full font-semibold text-sm text-slate-700 hover:text-[#7CB342] hover:bg-[#f1f8e9] transition-all">Home</a></li>
+            <li><a href="/products.html" class="px-4 py-2 rounded-full font-semibold text-sm text-slate-700 hover:text-[#7CB342] hover:bg-[#f1f8e9] transition-all">Products</a></li>
+            <li><a href="/pricing.html" class="px-4 py-2 rounded-full font-semibold text-sm text-slate-700 hover:text-[#7CB342] hover:bg-[#f1f8e9] transition-all">Pricing</a></li>
+            <li><a href="/docs.html" class="px-4 py-2 rounded-full font-semibold text-sm text-slate-700 hover:text-[#7CB342] hover:bg-[#f1f8e9] transition-all">Docs</a></li>
+            <li><a href="/blog.html" class="px-4 py-2 rounded-full font-semibold text-sm text-slate-700 hover:text-[#7CB342] hover:bg-[#f1f8e9] transition-all">Blog</a></li>
+            <li><a href="/contact.html" class="px-4 py-2 rounded-full font-semibold text-sm text-slate-700 hover:text-[#7CB342] hover:bg-[#f1f8e9] transition-all">Contact</a></li>
+            <li><a href="https://dashboard.galibrand.cloud" class="btn btn-primary inline-flex items-center justify-center px-6 py-2.5 rounded-full font-bold text-sm text-white bg-gradient-to-r from-[#7CB342] to-[#689f38] shadow-md hover:shadow-lg hover:scale-105 transition-all" style="color: white;">Get Started</a></li>
         </ul>
     </div>
 </nav>
