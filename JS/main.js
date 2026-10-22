@@ -653,7 +653,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     plan: selectedPlan
                 };
 
-                fetch('https://samriddhishop.info/galibrand/api/contact', {
+                fetch('https://72.62.199.214/galibrand/api/contact', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(payload)
