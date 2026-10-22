@@ -623,19 +623,25 @@ document.addEventListener('DOMContentLoaded', () => {
             let isValid = true;
 
             const name = document.getElementById('name');
+            const email = document.getElementById('email');
             const phone = document.getElementById('phone');
             const shopname = document.getElementById('shopname');
             
             document.querySelectorAll('.error-msg').forEach(el => el.style.display = 'none');
 
-            if (name.value.trim().length < 2) {
+            if (!name || name.value.trim().length < 2) {
                 showError(name, 'Please enter a valid name.');
                 isValid = false;
             }
 
             const phoneRegex = /^[6-9]\d{9}$/;
-            if (!phoneRegex.test(phone.value.trim())) {
+            if (!phone || !phoneRegex.test(phone.value.trim())) {
                 showError(phone, 'Please enter a valid 10-digit mobile number.');
+                isValid = false;
+            }
+
+            if (email && email.value.trim().length > 0 && !email.value.trim().includes('@')) {
+                showError(email, 'Please enter a valid email address.');
                 isValid = false;
             }
 
@@ -645,29 +651,34 @@ document.addEventListener('DOMContentLoaded', () => {
                 submitBtn.textContent = 'Sending...';
                 submitBtn.disabled = true;
 
-                const selectedPlan = planSelect ? planSelect.value : 'General Inquiry';
+                // Payload using only name, email, phone, shopName
                 const payload = {
-                    name: name.value.trim(),
-                    phone: phone.value.trim(),
-                    shopName: shopname ? shopname.value.trim() : '',
-                    plan: selectedPlan
+                    name: name ? name.value.trim() : '',
+                    email: email ? email.value.trim() : '',
+                    phone: phone ? phone.value.trim() : '',
+                    shopName: shopname ? shopname.value.trim() : ''
                 };
 
-                fetch('https://72.62.199.214/galibrand/api/contact', {
+                const apiUrl = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
+                    ? 'http://localhost:5000/api/contact'
+                    : 'https://api.galibrand.cloud/api/contact';
+
+                fetch(apiUrl, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(payload)
                 })
-                .then(response => {
+                .then(async (response) => {
+                    const data = await response.json().catch(() => ({}));
                     if (response.ok) {
-                        alert(`Thank you, ${name.value}! We have received your request. Our team will call you at ${phone.value} shortly.`);
+                        alert(data.message || `Thank you, ${name.value}! We have received your request. Our team will call you at ${phone.value} shortly.`);
                         contactForm.reset();
                     } else {
-                        alert('Something went wrong. Please try again.');
+                        alert(data.message || 'Something went wrong. Please check your details and try again.');
                     }
                 })
                 .catch(err => {
-                    console.error(err);
+                    console.error('Contact submission error:', err);
                     alert('Error connecting to server. Please try again later.');
                 })
                 .finally(() => {
