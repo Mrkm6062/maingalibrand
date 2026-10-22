@@ -674,7 +674,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         alert(data.message || `Thank you, ${name.value}! We have received your request. Our team will call you at ${phone.value} shortly.`);
                         contactForm.reset();
                     } else {
-                        alert(data.message || 'Something went wrong. Please check your details and try again.');
+                        alert(data.message || 'Something went wrong. Please check your detail and try again.');
                     }
                 })
                 .catch(err => {
