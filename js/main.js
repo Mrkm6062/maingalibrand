@@ -510,52 +510,204 @@ function initScrollAnimations() {
 }
 
 // ========================================================
-// DOCS PAGE INTERACTIVE LOGIC (docs.html)
+// DOCS PAGE INTERACTIVE LOGIC (docs.html & olddocs.html)
 // ========================================================
 function initDocsPage() {
     const searchInput = document.querySelector('.docs-search-input');
+    const clearSearchBtn = document.getElementById('clearSearchBtn');
+    const resultCount = document.getElementById('searchResultCount');
     const docSections = document.querySelectorAll('.docs-section');
-    const sidebarLinks = document.querySelectorAll('.docs-nav-item a');
+    const sidebarLinks = document.querySelectorAll('.docs-nav-item a, .docs-nav-link');
+    const sidebar = document.querySelector('.docs-sidebar, .docs-sidebar-wrapper');
 
+    // 1. Search Filtering
     if (searchInput && docSections.length > 0) {
         searchInput.addEventListener('input', (e) => {
             const query = e.target.value.toLowerCase().trim();
+            let visibleCount = 0;
+
+            if (query === '') {
+                if (clearSearchBtn) {
+                    clearSearchBtn.classList.add('hidden');
+                    clearSearchBtn.classList.remove('flex');
+                }
+                if (resultCount) resultCount.classList.add('hidden');
+                docSections.forEach(section => {
+                    section.style.display = 'block';
+                });
+                sidebarLinks.forEach(link => {
+                    const li = link.closest('li');
+                    if (li) li.style.display = 'block';
+                });
+                document.querySelectorAll('.docs-sidebar-wrapper .docs-nav-list, .docs-sidebar-wrapper .docs-sidebar-title').forEach(el => {
+                    el.style.display = 'block';
+                });
+                return;
+            }
+
+            if (clearSearchBtn) {
+                clearSearchBtn.classList.remove('hidden');
+                clearSearchBtn.classList.add('flex');
+            }
+
             docSections.forEach(section => {
                 const text = section.textContent.toLowerCase();
-                if (query === '' || text.includes(query)) {
+                if (text.includes(query)) {
                     section.style.display = 'block';
+                    visibleCount++;
                 } else {
                     section.style.display = 'none';
                 }
             });
-        });
-    }
 
-    if (sidebarLinks.length > 0 && docSections.length > 0 && 'IntersectionObserver' in window) {
-        const sectionObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const id = entry.target.getAttribute('id');
-                    sidebarLinks.forEach(link => {
-                        if (link.getAttribute('href') === `#${id}`) {
-                            link.classList.add('active');
-                            link.style.color = '#7CB342';
-                            link.style.backgroundColor = '#f1f8e9';
-                        } else {
-                            link.classList.remove('active');
-                            link.style.color = '';
-                            link.style.backgroundColor = '';
-                        }
-                    });
+            if (resultCount) {
+                resultCount.textContent = `${visibleCount} guide${visibleCount === 1 ? '' : 's'} found`;
+                resultCount.classList.remove('hidden');
+            }
+
+            // Filter sidebar links and group titles based on search
+            sidebarLinks.forEach(link => {
+                const href = link.getAttribute('href');
+                if (href && href.startsWith('#')) {
+                    const targetEl = document.querySelector(href);
+                    const li = link.closest('li');
+                    if (targetEl && li) {
+                        const parentSec = targetEl.closest('.docs-section') || targetEl;
+                        const isParentVisible = parentSec.style.display !== 'none';
+                        const textMatches = targetEl.textContent.toLowerCase().includes(query) || link.textContent.toLowerCase().includes(query);
+                        li.style.display = (isParentVisible && textMatches) ? 'block' : 'none';
+                    }
                 }
             });
-        }, {
-            rootMargin: '-20% 0px -65% 0px'
+
+            // Hide empty group titles
+            document.querySelectorAll('.docs-sidebar-wrapper .docs-nav-list').forEach(list => {
+                const hasVisible = Array.from(list.querySelectorAll('li')).some(li => li.style.display !== 'none');
+                list.style.display = hasVisible ? 'block' : 'none';
+                const title = list.previousElementSibling;
+                if (title && title.classList.contains('docs-sidebar-title')) {
+                    title.style.display = hasVisible ? 'block' : 'none';
+                }
+            });
         });
 
-        docSections.forEach(section => sectionObserver.observe(section));
+        if (clearSearchBtn) {
+            clearSearchBtn.addEventListener('click', () => {
+                searchInput.value = '';
+                searchInput.dispatchEvent(new Event('input'));
+                searchInput.focus();
+            });
+        }
     }
 
+    // 2. Scrollspy & Sidebar Highlighting
+    if (sidebarLinks.length > 0) {
+        const targets = [];
+        sidebarLinks.forEach(link => {
+            const href = link.getAttribute('href');
+            if (href && href.startsWith('#')) {
+                const target = document.querySelector(href);
+                if (target) {
+                    targets.push({ id: href.substring(1), element: target, link: link });
+                }
+            }
+        });
+
+        function setActiveSidebar(activeId) {
+            if (!activeId) return;
+            sidebarLinks.forEach(link => {
+                const href = link.getAttribute('href');
+                if (href === `#${activeId}`) {
+                    link.classList.add('active');
+                    link.style.color = '#558b2f';
+                    link.style.backgroundColor = '#f1f8e9';
+                    link.style.fontWeight = '700';
+                    link.style.borderLeft = '4px solid #7CB342';
+                    
+                    if (sidebar) {
+                        const linkRect = link.getBoundingClientRect();
+                        const sidebarRect = sidebar.getBoundingClientRect();
+                        if (linkRect.top < sidebarRect.top || linkRect.bottom > sidebarRect.bottom) {
+                            link.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+                        }
+                    }
+                } else {
+                    link.classList.remove('active');
+                    link.style.color = '';
+                    link.style.backgroundColor = '';
+                    link.style.fontWeight = '';
+                    link.style.borderLeft = '';
+                }
+            });
+        }
+
+        let isTicking = false;
+        function onScrollSpy() {
+            if (isTicking) return;
+            isTicking = true;
+            requestAnimationFrame(() => {
+                isTicking = false;
+
+                // Bottom of page check
+                const scrollBottom = window.innerHeight + window.scrollY;
+                const docHeight = document.documentElement.scrollHeight;
+                if (docHeight - scrollBottom < 80) {
+                    const visibleTargets = targets.filter(t => t.element.offsetParent !== null);
+                    if (visibleTargets.length > 0) {
+                        setActiveSidebar(visibleTargets[visibleTargets.length - 1].id);
+                        return;
+                    }
+                }
+
+                // Trigger offset (navbar 74px + searchbar ~60px + margin = ~165px)
+                const triggerOffset = 165;
+                let activeId = null;
+
+                for (let i = 0; i < targets.length; i++) {
+                    const item = targets[i];
+                    if (item.element.offsetParent === null) continue;
+                    const rect = item.element.getBoundingClientRect();
+                    if (rect.top <= triggerOffset) {
+                        activeId = item.id;
+                    } else {
+                        break;
+                    }
+                }
+
+                if (activeId) {
+                    setActiveSidebar(activeId);
+                } else if (targets.length > 0 && targets[0].element.offsetParent !== null) {
+                    setActiveSidebar(targets[0].id);
+                }
+            });
+        }
+
+        window.addEventListener('scroll', onScrollSpy, { passive: true });
+        onScrollSpy();
+
+        // Smooth scroll with offset for sidebar links
+        sidebarLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                const href = link.getAttribute('href');
+                if (href && href.startsWith('#')) {
+                    const targetEl = document.querySelector(href);
+                    if (targetEl) {
+                        e.preventDefault();
+                        const headerOffset = 150;
+                        const elementPosition = targetEl.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: 'smooth'
+                        });
+                        setActiveSidebar(href.substring(1));
+                    }
+                }
+            });
+        });
+    }
+
+    // 3. One-Tap Copy Snippets
     document.querySelectorAll('.docs-copy-btn').forEach(btn => {
         btn.addEventListener('click', () => {
             const codeEl = btn.closest('.docs-code-snippet');
