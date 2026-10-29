@@ -1,3 +1,9 @@
+// Clean URL: Ensure address bar shows '/' instead of '/index.html'
+if (window.location.pathname.endsWith('/index.html')) {
+    const cleanPath = window.location.pathname.replace(/\/index\.html$/, '/') || '/';
+    window.history.replaceState(null, '', cleanPath + window.location.search + window.location.hash);
+}
+
 function initMobileMenu() {
     const hamburger = document.querySelector('.hamburger');
     const navLinks = document.querySelector('.nav-links');
@@ -24,6 +30,7 @@ function initMobileMenu() {
 function setActiveNavLink() {
     const navLinks = document.querySelectorAll('.nav-links a:not(.btn)');
     const currentPath = window.location.pathname;
+    const isHome = currentPath === '/' || currentPath === '/index.html' || currentPath === '';
 
     let bestMatch = null;
     let maxMatchLength = -1;
@@ -31,17 +38,19 @@ function setActiveNavLink() {
     navLinks.forEach(link => {
         const linkPath = link.getAttribute('href');
         if (!linkPath) return;
-        const cleanLinkPath = linkPath.endsWith('/index.html') ? linkPath.substring(0, linkPath.length - 10) : linkPath.replace('.html', '');
-        
-        if (currentPath === '/' && (cleanLinkPath === '' || cleanLinkPath === '/')) {
-             bestMatch = link;
-             return;
+
+        if (isHome && (linkPath === '/' || linkPath === '/index.html' || linkPath === '' || linkPath.endsWith('galibrand.cloud') || linkPath.endsWith('galibrand.cloud/'))) {
+            bestMatch = link;
+            return;
         }
 
-        if (cleanLinkPath !== '' && currentPath.startsWith(cleanLinkPath)) {
-            if (cleanLinkPath.length > maxMatchLength) {
-                maxMatchLength = cleanLinkPath.length;
-                bestMatch = link;
+        if (!isHome) {
+            const cleanLinkPath = linkPath.replace('.html', '');
+            if (cleanLinkPath !== '' && cleanLinkPath !== '/' && currentPath.startsWith(cleanLinkPath)) {
+                if (cleanLinkPath.length > maxMatchLength) {
+                    maxMatchLength = cleanLinkPath.length;
+                    bestMatch = link;
+                }
             }
         }
     });
@@ -77,7 +86,7 @@ async function loadPartials() {
 
     try {
         if (headerPlaceholder) {
-            const response = await fetch('/header.html?v=4.0', { cache: 'no-cache' });
+            const response = await fetch('/header.html?v=4.2', { cache: 'no-cache' });
             if (response.ok) {
                 headerPlaceholder.innerHTML = await response.text();
                 initMobileMenu();
@@ -85,7 +94,7 @@ async function loadPartials() {
             }
         }
         if (footerPlaceholder) {
-            const response = await fetch('/footer.html?v=4.0', { cache: 'no-cache' });
+            const response = await fetch('/footer.html?v=4.2', { cache: 'no-cache' });
             if (response.ok) {
                 footerPlaceholder.innerHTML = await response.text();
                 initBackToTop();
