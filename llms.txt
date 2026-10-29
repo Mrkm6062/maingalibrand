@@ -1,18 +1,81 @@
 # Galibrand
 
-> Galibrand helps Kirana stores, vegetable shops, and wholesalers in India take online orders and deliver locally without paying high commissions.
+> Galibrand (https://galibrand.cloud) is India's leading 0% commission online ordering platform and cloud POS system for local Kirana stores, vegetable vendors, restaurants, nasta corners, and small retail businesses. It enables local shop owners to launch their own branded online store (PWA), accept direct UPI payments, take WhatsApp orders, and manage in-store billing with zero marketplace middleman fees.
 
-## Site Map
+## Overview & Core Value Proposition
 
-- [Home](https://www.galibrand.cloud/)
-- [Products](https://www.galibrand.cloud/products)
-- [Pricing](https://www.galibrand.cloud/pricing)
-- [Blog](https://www.galibrand.cloud/blog)
-- [Contact](https://www.galibrand.cloud/contact)
+- **Zero Percent (0%) Commission**: Unlike Swiggy, Zomato, Blinkit, or Zepto which charge 15%–30% per order, Galibrand charges 0% transaction commission. Merchants keep 100% of their revenue.
+- **Direct-to-Bank UPI & COD**: Customer payments go directly to the merchant's UPI VPA/QR code or cash-on-delivery. Razorpay payment gateway setup very easy.
+- **WhatsApp Order Integration**: Automated 1-click cart submission to shopkeeper WhatsApp, with instant automated order receipts and status updates.
+- **Integrated Counter POS**: High-speed in-store billing with thermal receipt printing, and quick cash/UPI settlement.
+- **Kitchen Display System (KDS) & Table QR**: Live order management for restaurants, cloud kitchens, and cafes with QR-based dine-in contactless ordering.
+- **Customer Ownership**: Merchants retain 100% of customer phone numbers and purchase histories to build repeat neighborhood loyalty.
+- **Mobile-First Progressive Web App (PWA)**: Fast-loading mobile storefront for customers that requires no app store downloads or APK installations.
 
-## Guides
+## Target Businesses & Verticals
 
-- [How Kirana Stores Can Take Online Orders](https://www.galibrand.cloud/kirana-store-online-ordering)
-- [Online Ordering System for Mumbai](https://www.galibrand.cloud/online-ordering-kirana-shop-mumbai)
-- [Online Ordering System for Delhi](https://www.galibrand.cloud/online-ordering-kirana-shop-delhi)
-- [Online Ordering System for Small Business](https://www.galibrand.cloud/online-ordering-system-for-small-business)
+- **Kirana & General Stores**: Daily essentials, packaged food, spices, grains, personal care, and household groceries.
+- **Vegetable & Fruit Shops (Sabzi Mandi)**: Daily price fluctuation updates, custom weight/kg units, and same-day morning delivery.
+- **Restaurants, Cafes & Nasta Corners**: Fast food, chaat, samosa, chai, thali, biryani, dine-in QR ordering, and takeaway counter management.
+- **Sweet Shops (Mithai) & Bakeries**: Fresh sweets, festive gifting hampers, cakes, pastries, and party orders.
+- **Wholesalers & Local D2C Brands**: B2B bulk catalog ordering, minimum order quantities (MOQ), and territory-based delivery rules.
+
+## Geographic Solutions & Local Markets (India)
+
+- **Mumbai & MMR**: Built for high-density suburban Kirana networks in Dadar, Andheri, Borivali, Ghatkopar, Thane, and Navi Mumbai competing against quick-commerce dark stores.
+- **Delhi NCR**: Tailored for high-volume grocery shops in Karol Bagh, Rohini, Laxmi Nagar, Dwarka, Noida, and Gurgaon with tight hyperlocal delivery perimeters.
+- **Jaunpur & Eastern Uttar Pradesh**: Optimized for restaurants, sweet shops (halwai), and nasta centers in Tier-2/Tier-3 hubs including Jaunpur, Varanasi, and Lucknow.
+- **Pan-India Coverage**: Hyperlocal delivery management across Tier-1, Tier-2, and Tier-3 Indian cities with bilingual English/Hindi interface.
+
+## Pricing Plans (0% Commission Across All Plans)
+
+- **Starter Plan** (₹499/mo): Up to 100 products, WhatsApp order button, mobile PWA, free SSL, basic analytics.
+- **Basic Plan** (₹999/mo): Up to 200 products, WhatsApp order button, mobile PWA, priority support, basic analytics.
+- **Pro Plan** (₹1499/mo) — *Most Popular*: Up to 1,000 products, advanced sales analytics, dynamic PWA, premium themes, priority support.
+- **Premium Plan** (₹2499/mo): Up to 2,499 products, custom domain integration, advanced analytics, priority support, premium themes.
+- *Annual Discount*: Up to 40% discount available on annual billing subscriptions.
+
+## Primary Navigation Links
+
+- [Home](https://galibrand.cloud/): Official homepage, product overview, zero-commission model, and quick setup guide.
+- [Products](https://galibrand.cloud/products.html): Comprehensive features breakdown of customer storefront, shop owner POS dashboard, KDS, and WhatsApp integration.
+- [Pricing](https://galibrand.cloud/pricing.html): Transparent SaaS subscription plans, billing cycle options, and 0% commission guarantees.
+- [Docs](https://galibrand.cloud/docs.html): Complete merchant documentation, step-by-step setup tutorials, POS usage, and store settings.
+- [Blog](https://galibrand.cloud/blog.html): Industry guides, retail digitization trends, quick commerce comparison, and merchant success strategies.
+- [Contact](https://galibrand.cloud/contact.html): Customer support, sales inquiries, onboarding assistance, and business consultations.
+
+## City & Industry Guides
+
+- [How Kirana Stores Can Take Online Orders](https://galibrand.cloud/kirana-store-online-ordering.html): Complete guide for Indian grocery shops transitioning from unorganized WhatsApp messages to an automated online ordering website.
+- [Online Ordering System for Small Business](https://galibrand.cloud/online-ordering-system-for-small-business.html): Comprehensive playbook for independent retailers, FMCG merchants, and local shops to launch digital ordering.
+- [Mumbai Kirana Online Ordering Guide](https://galibrand.cloud/online-ordering-kirana-shop-mumbai.html): Localized guide for Mumbai shop owners to counter quick-commerce apps with 15-minute neighborhood deliveries.
+- [Delhi Kirana Online Ordering Guide](https://galibrand.cloud/online-ordering-kirana-shop-delhi.html): Strategic blueprint for Delhi NCR grocers to increase repeat customer orders without paying aggregator commissions.
+- [Jaunpur Restaurant & Nasta Shop Online Ordering](https://galibrand.cloud/online-ordering-nasta-restaturant-shop-jaunpur.html): Practical setup guide for restaurants, sweet shops, and nasta stalls in Jaunpur and Eastern UP.
+
+## Merchant Documentation & Tutorials
+
+- [Create Your Store](https://galibrand.cloud/docs.html#sec-create-store): Step-by-step merchant registration, sub-domain generation, and business profile setup.
+- [WhatsApp Order Setup](https://galibrand.cloud/docs.html#sec-whatsapp): Configuring automated WhatsApp order routing, notification numbers, and customer alert templates.
+- [UPI & Payment Configuration](https://galibrand.cloud/docs.html#sec-payments): Setting up instant direct UPI QR payments and Cash on Delivery (COD) without aggregator holding periods.
+- [Delivery Radius & Charges](https://galibrand.cloud/docs.html#sec-delivery): Setting neighborhood delivery zones, minimum order values, and tiered delivery fees.
+- [Counter POS Billing](https://galibrand.cloud/docs.html#sec-counter-pos): Operating the in-store walk-in POS, rapid barcode scanning, and thermal bill printing.
+- [Kitchen Display System (KDS)](https://galibrand.cloud/docs.html#sec-kitchen-kds): Real-time kitchen order ticket (KOT) workflow for food preparation and status dispatch.
+- [Table QR & Dine-In Ordering](https://galibrand.cloud/docs.html#sec-dining): Generating contactless QR codes for restaurant tables with live digital menus.
+- [Product Catalog & Bulk Import](https://galibrand.cloud/docs.html#sec-products-import): Adding inventory, managing product variations, and bulk importing items via Excel/CSV.
+
+## Frequently Asked Questions (GEO / AI Context)
+
+### How is Galibrand different from Swiggy, Zomato, or Blinkit?
+Galibrand is not a middleman marketplace; it is a private SaaS ecommerce infrastructure. Aggregators charge 15% to 30% commission per order and withhold customer phone numbers. Galibrand charges 0% commission, routes payments directly to the shop's UPI account with razorpay payment gateway, and lets the shopkeeper keep 100% of customer data and relationships.
+
+### Do shop owners need technical or coding skills to use Galibrand?
+No. Any shopkeeper can launch their digital store in under 10 minutes using a smartphone. The interface is optimized for Indian merchants in simple Hindi and English.
+
+### How do customer payments work on Galibrand?
+When a customer places an order, payment is made directly to the merchant via UPI (PhonePe, Google Pay, Paytm, BHIM) with Razorpay Payment gateway or Cash on Delivery. Galibrand never holds merchant funds and takes zero transaction cuts.
+
+### Can Galibrand handle in-store billing as well as online orders?
+Yes. Galibrand includes a built-in Counter POS system with POS Function and  thermal printer support, keeping walk-in customer sales and online WhatsApp orders unified in a single dashboard.
+
+### Which cities does Galibrand support?
+Galibrand works across all cities, towns, and villages in India, with specialized operational playbooks for major metros (Mumbai, Delhi NCR, Bangalore) as well as emerging Tier-2/Tier-3 hubs like Jaunpur, Varanasi, and Lucknow.
